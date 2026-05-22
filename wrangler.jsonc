@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "asti-designs-studio",
+  "compatibility_date": "2025-09-24",
+  "compatibility_flags": ["nodejs_compat"],
+  "main": "src/server.ts",
+  "assets": {
+    "binding": "ASSETS"
+  },
+  // Non-secret runtime vars — visible to the Worker at runtime via process.env.*
+  // NEVER put secret keys here (use `wrangler secret put` instead)
+  "vars": {
+    "SUPABASE_URL": "https://zagxrihkwmhdzyjdcwek.supabase.co"
+  }
+}

@@ -1,0 +1,120 @@
+/* @config "../tailwind.config.js"; */
+@import "tailwindcss";
+@source "../src/**/*.{ts,tsx,js,jsx}";
+@source "../app/**/*.{ts,tsx,js,jsx}";
+@source "../../src/**/*.{ts,tsx,js,jsx}";
+/* //@source "../src"; */
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-stone: var(--stone);
+  --color-marble: var(--marble);
+  --color-warm: var(--warm);
+  --font-display: var(--font-heading);
+  --font-sans: "Plus Jakarta Sans", system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.125rem;
+  --background: oklch(0.992 0.002 90);          /* near-white */
+  --foreground: oklch(0.12 0 0);                /* deep black */
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.12 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.12 0 0);
+  --primary: oklch(0.12 0 0);                   /* black */
+  --primary-foreground: oklch(0.992 0.002 90);
+  --secondary: oklch(0.96 0.004 80);            /* off-white */
+  --secondary-foreground: oklch(0.12 0 0);
+  --muted: oklch(0.955 0.005 75);
+  --muted-foreground: oklch(0.42 0.005 70);
+  --accent: oklch(0.93 0.012 70);               /* warm beige */
+  --accent-foreground: oklch(0.12 0 0);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+  --border: oklch(0.9 0.005 80);
+  --input: oklch(0.9 0.005 80);
+  --ring: oklch(0.4 0 0);
+  --stone: oklch(0.88 0.008 75);
+  --marble: oklch(0.94 0.004 85);
+  --warm: oklch(0.86 0.025 70);
+}
+
+.dark { color-scheme: light; }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-heading); font-weight: 700; letter-spacing: -0.02em; }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-heading); }
+  .text-balance { text-wrap: balance; }
+  .container-luxe { @apply w-full px-6 md:px-10 lg:px-16; }
+  .hairline { border-top: 1px solid var(--color-border); }
+  .marble-bg {
+    background:
+      radial-gradient(at 20% 10%, oklch(0.96 0.006 80) 0%, transparent 50%),
+      radial-gradient(at 80% 30%, oklch(0.94 0.01 70) 0%, transparent 55%),
+      radial-gradient(at 50% 90%, oklch(0.97 0.004 90) 0%, transparent 60%),
+      var(--color-background);
+  }
+  .placeholder-tile {
+    background:
+      linear-gradient(135deg, oklch(0.96 0.005 80) 0%, oklch(0.91 0.012 70) 50%, oklch(0.94 0.006 80) 100%);
+    position: relative;
+  }
+  .placeholder-tile::after {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      repeating-linear-gradient(115deg, transparent 0 18px, rgba(0,0,0,0.025) 18px 19px),
+      repeating-linear-gradient(45deg, transparent 0 30px, rgba(255,255,255,0.4) 30px 31px);
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+  .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
+  .fade-up.is-in { opacity: 1; transform: translateY(0); }
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: background-size .4s ease;
+  }
+  .link-underline:hover { background-size: 100% 1px; }
+}
