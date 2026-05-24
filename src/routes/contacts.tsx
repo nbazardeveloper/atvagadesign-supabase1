@@ -1,17 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { FadeIn } from "@/components/site/FadeIn";
 import { LeadForm } from "@/components/site/LeadForm";
-import { Phone, Instagram, Mail, MapPin } from "lucide-react";
+import { Phone, Instagram, Mail, MapPin, Linkedin, Facebook } from "lucide-react";
 import { buildSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/contacts")({
   component: Contacts,
   head: () =>
     buildSeoMeta({
-      title: "Contact Asti Designs — Decorative Plaster Studio",
-      description: "Get in touch with Asti Designs. Reach us by phone, WhatsApp, Instagram or email to discuss your Venetian plaster or microcement project.",
+      title: "Contact ATVAGA Designs — Residential Design Studio",
+      description: "Get in touch with ATVAGA Designs. Reach us by phone, WhatsApp, Instagram or email to discuss your residential design project.",
       path: "/contacts",
-      imageAlt: "Contact Asti Designs decorative plaster studio",
+      imageAlt: "Contact ATVAGA Designs residential design studio",
     }),
 });
 
@@ -40,13 +40,21 @@ function Contacts() {
                 </span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Message</span>
               </a>
-              <a href="https://www.instagram.com/astidesigns/" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
-                <span className="flex items-center gap-4"><Instagram className="w-4 h-4" /><span className="text-sm">@astidesigns</span></span>
+              <a href="https://www.instagram.com/atvaga_llc/" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Instagram className="w-4 h-4" /><span className="text-sm">@atvaga_llc</span></span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Follow</span>
               </a>
-              <a href="mailto:Asticonstructiontx@gmail.com" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
-                <span className="flex items-center gap-4"><Mail className="w-4 h-4" /><span className="text-sm">Asticonstructiontx@gmail.com</span></span>
+              <a href="mailto:rihanna@atvaga.com" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Mail className="w-4 h-4" /><span className="text-sm">rihanna@atvaga.com</span></span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Email</span>
+              </a>
+              <a href="https://www.facebook.com/profile.php?id=100054484958846" target="_blank" rel="noreferrer" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Facebook className="w-4 h-4" /><span className="text-sm">Facebook</span></span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Follow</span>
+              </a>
+              <a href="https://www.linkedin.com/company/vaga-llc/" target="_blank" rel="noreferrer" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Linkedin className="w-4 h-4" /><span className="text-sm">LinkedIn</span></span>
+                <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Connect</span>
               </a>
             </div>
           </FadeIn>
@@ -56,7 +64,7 @@ function Contacts() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-4">Studio</p>
               <p className="font-display text-2xl">Seattle, Washington</p>
               <p className="mt-2 text-sm text-muted-foreground flex items-center gap-2"><MapPin className="w-3.5 h-3.5" /> Mon — Sat · 8am — 5pm</p>
-              <p className="mt-4 text-sm text-muted-foreground">Phone, Instagram, WhatsApp, and email available for project inquiries.</p>
+              <p className="mt-4 text-sm text-muted-foreground">Phone, WhatsApp, Instagram, Facebook, LinkedIn, and email available for project inquiries.</p>
             </div>
           </FadeIn>
         </div>

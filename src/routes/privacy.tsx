@@ -17,7 +17,7 @@ export const Route = createFileRoute("/privacy")({
 
 const EFFECTIVE_DATE = "June 1, 2026";
 const COMPANY = "ATVAGA Designs";
-const EMAIL = "Asticonstructiontx@gmail.com";
+const EMAIL = "rihanna@atvaga.com";
 
 const sections = [
   {
