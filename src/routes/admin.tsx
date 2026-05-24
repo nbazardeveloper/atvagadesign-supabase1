@@ -1,20 +1,45 @@
-import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { supabase } from "@/integrations/supabase/client";
+import type { Tables, TablesInsert, TablesUpdate } from "@/integrations/supabase/types";
 import { useAuth } from "@/hooks/use-auth";
 import { toast } from "sonner";
-import { Trash2, Plus, LogOut } from "lucide-react";
+import {
+  Eye,
+  EyeOff,
+  GripVertical,
+  Linkedin,
+  LogOut,
+  Plus,
+  Trash2,
+} from "lucide-react";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+
+type AdminTab = "leads" | "portfolio" | "team";
+type TeamMember = Tables<"team_members">;
+type TeamMemberInsert = TablesInsert<"team_members">;
+type TeamMemberUpdate = TablesUpdate<"team_members">;
 
 export const Route = createFileRoute("/admin")({
   component: Admin,
-  head: () => ({ meta: [{ title: "Studio CMS — Asti Designs" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Admin CMS — ATVAGA Designs" }, { name: "robots", content: "noindex" }] }),
 });
 
 function Admin() {
-  const navigate = useNavigate();
+  const navigate = Route.useNavigate();
   const { user, isAdmin, loading } = useAuth();
-  const [tab, setTab] = useState<"leads" | "portfolio">("leads");
+  const [tab, setTab] = useState<AdminTab>("leads");
 
   useEffect(() => {
     if (!loading && !user) navigate({ to: "/login" });
@@ -35,7 +60,7 @@ function Admin() {
       <header className="bg-background border-b border-border">
         <div className="container-luxe flex items-center justify-between h-16">
           <Link to="/" className="flex items-baseline gap-2">
-            <span className="font-display text-xl">Asti</span>
+            <span className="font-italiana text-xl">ATVAGA</span>
             <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">CMS</span>
           </Link>
           <div className="flex items-center gap-6">
@@ -46,7 +71,7 @@ function Admin() {
           </div>
         </div>
         <div className="container-luxe flex gap-6 border-t border-border">
-          {(["leads","portfolio"] as const).map(t => (
+          {(["leads", "portfolio", "team"] as const).map(t => (
             <button key={t} onClick={() => setTab(t)} className={`py-4 text-[10px] uppercase tracking-[0.3em] border-b-2 transition ${tab === t ? "border-foreground" : "border-transparent text-muted-foreground"}`}>
               {t}
             </button>
@@ -55,7 +80,7 @@ function Admin() {
       </header>
 
       <div className="container-luxe py-10">
-        {tab === "leads" ? <LeadsPanel /> : <PortfolioPanel />}
+        {tab === "leads" ? <LeadsPanel /> : tab === "portfolio" ? <PortfolioPanel /> : <TeamPanel />}
       </div>
     </div>
   );
@@ -198,6 +223,323 @@ function PortfolioPanel() {
         ))}
       </div>
       <p className="mt-6 text-xs text-muted-foreground">Tip: paste any image URL in the Image URL field. Click outside the field to save.</p>
+    </div>
+  );
+}
+
+function TeamPanel() {
+  const qc = useQueryClient();
+  const [draggedId, setDraggedId] = useState<string | null>(null);
+  const [isAdding, setIsAdding] = useState(false);
+  const [newMember, setNewMember] = useState({
+    name: "",
+    role: "",
+    bio: "",
+    photo_url: "",
+    linkedin_url: "",
+  });
+
+  const { data: members = [], isLoading } = useQuery({
+    queryKey: ["team_members_admin"],
+    queryFn: async () => {
+      const { data, error } = await supabase.from("team_members").select("*").order("sort_order");
+      if (error) throw error;
+      return (data ?? []) as TeamMember[];
+    },
+  });
+
+  const invalidateTeamQueries = async () => {
+    await Promise.all([
+      qc.invalidateQueries({ queryKey: ["team_members_admin"] }),
+      qc.invalidateQueries({ queryKey: ["team_members_active"] }),
+    ]);
+  };
+
+  const createMember = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!newMember.name.trim() || !newMember.role.trim() || !newMember.bio.trim()) {
+      toast.error("Name, role, and bio are required.");
+      return;
+    }
+
+    setIsAdding(true);
+
+    try {
+      const payload: TeamMemberInsert = {
+        name: newMember.name.trim(),
+        role: newMember.role.trim(),
+        bio: newMember.bio.trim(),
+        photo_url: newMember.photo_url.trim() || null,
+        linkedin_url: newMember.linkedin_url.trim() || null,
+        sort_order: members.length > 0 ? Math.max(...members.map((member) => member.sort_order)) + 1 : 1,
+        is_active: true,
+      };
+
+      const { error } = await supabase.from("team_members").insert(payload);
+      if (error) throw error;
+
+      setNewMember({ name: "", role: "", bio: "", photo_url: "", linkedin_url: "" });
+      await invalidateTeamQueries();
+      toast.success("Team member added");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "Unable to add team member");
+    } finally {
+      setIsAdding(false);
+    }
+  };
+
+  const updateMember = async (id: string, patch: TeamMemberUpdate, successMessage?: string) => {
+    const { error } = await supabase.from("team_members").update(patch).eq("id", id);
+    if (error) {
+      toast.error(error.message);
+      return false;
+    }
+
+    await invalidateTeamQueries();
+    if (successMessage) toast.success(successMessage);
+    return true;
+  };
+
+  const toggleActive = async (member: TeamMember) => {
+    await updateMember(member.id, { is_active: !member.is_active }, member.is_active ? "Marked inactive" : "Marked active");
+  };
+
+  const deleteMember = async (member: TeamMember) => {
+    const { error } = await supabase.from("team_members").delete().eq("id", member.id);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
+
+    await invalidateTeamQueries();
+    toast.success("Deleted");
+  };
+
+  const reorderMembers = async (targetId: string) => {
+    if (!draggedId || draggedId === targetId) return;
+
+    const sourceIndex = members.findIndex((member) => member.id === draggedId);
+    const targetIndex = members.findIndex((member) => member.id === targetId);
+    if (sourceIndex < 0 || targetIndex < 0) return;
+
+    const reordered = [...members];
+    const [draggedMember] = reordered.splice(sourceIndex, 1);
+    reordered.splice(targetIndex, 0, draggedMember);
+
+    const updates = reordered.map((member, index) =>
+      supabase.from("team_members").update({ sort_order: index + 1 }).eq("id", member.id),
+    );
+
+    const results = await Promise.all(updates);
+    const failed = results.find((result) => result.error);
+    if (failed?.error) {
+      toast.error(failed.error.message);
+      return;
+    }
+
+    setDraggedId(null);
+    await invalidateTeamQueries();
+    toast.success("Team order updated");
+  };
+
+  return (
+    <div>
+      <div className="flex items-end justify-between gap-4 mb-6">
+        <div>
+          <h2 className="font-display text-3xl">Team</h2>
+          <p className="mt-2 text-sm text-muted-foreground">Manage the team grid shown on the About page.</p>
+        </div>
+        <p className="text-xs text-muted-foreground uppercase tracking-[0.25em]">{members.length} total</p>
+      </div>
+
+      <form onSubmit={createMember} className="bg-background border border-border p-6 grid gap-4 mb-8 lg:grid-cols-12">
+        <div className="lg:col-span-3">
+          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo URL</label>
+          <textarea
+            value={newMember.photo_url}
+            onChange={(e) => setNewMember((current) => ({ ...current, photo_url: e.target.value }))}
+            className="min-h-[164px] w-full resize-y bg-transparent border border-border px-3 py-3 text-sm outline-none transition-colors focus:border-foreground"
+            placeholder="Paste the public Supabase image URL"
+          />
+        </div>
+
+        <div className="lg:col-span-4 grid gap-4 content-start">
+          <div>
+            <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Name</label>
+            <input
+              value={newMember.name}
+              onChange={(e) => setNewMember((current) => ({ ...current, name: e.target.value }))}
+              className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+              placeholder="Full name"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Role</label>
+            <input
+              value={newMember.role}
+              onChange={(e) => setNewMember((current) => ({ ...current, role: e.target.value }))}
+              className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+              placeholder="Role or title"
+            />
+          </div>
+          <div>
+            <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">LinkedIn URL</label>
+            <input
+              value={newMember.linkedin_url}
+              onChange={(e) => setNewMember((current) => ({ ...current, linkedin_url: e.target.value }))}
+              className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+              placeholder="https://www.linkedin.com/in/..."
+            />
+          </div>
+        </div>
+
+        <div className="lg:col-span-5 flex flex-col">
+          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Bio</label>
+          <textarea
+            value={newMember.bio}
+            onChange={(e) => setNewMember((current) => ({ ...current, bio: e.target.value }))}
+            className="min-h-[164px] w-full resize-y bg-transparent border border-border px-3 py-3 text-sm outline-none transition-colors focus:border-foreground"
+            placeholder="2-3 lines about this team member"
+          />
+          <button disabled={isAdding} className="mt-4 self-start px-6 py-2.5 bg-foreground text-background text-[10px] uppercase tracking-[0.3em] inline-flex items-center gap-2 disabled:opacity-60">
+            <Plus className="w-3 h-3" />
+            {isAdding ? "Adding..." : "Add member"}
+          </button>
+        </div>
+      </form>
+
+      {isLoading ? (
+        <p className="text-sm text-muted-foreground">Loading…</p>
+      ) : members.length === 0 ? (
+        <div className="bg-background border border-border p-10 text-center text-muted-foreground text-sm">No team members yet.</div>
+      ) : (
+        <div className="space-y-4">
+          {members.map((member) => (
+            <div
+              key={member.id}
+              draggable
+              onDragStart={() => setDraggedId(member.id)}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={() => reorderMembers(member.id)}
+              className={`bg-background border border-border p-5 transition ${draggedId === member.id ? "opacity-60" : "opacity-100"}`}
+            >
+              <div className="flex flex-col gap-5 xl:flex-row xl:items-start">
+                <div className="flex items-start gap-4 xl:w-[280px]">
+                  <button
+                    type="button"
+                    onMouseDown={() => setDraggedId(member.id)}
+                    className="mt-1 cursor-grab text-muted-foreground hover:text-foreground"
+                    aria-label={`Drag ${member.name}`}
+                  >
+                    <GripVertical className="w-4 h-4" />
+                  </button>
+
+                  <div className="h-18 w-18 shrink-0 overflow-hidden bg-secondary">
+                    {member.photo_url ? (
+                      <img src={member.photo_url} alt={member.name} className="h-full w-full object-cover" />
+                    ) : (
+                      <div className="flex h-full items-center justify-center text-[9px] uppercase tracking-[0.25em] text-muted-foreground">
+                        No photo
+                      </div>
+                    )}
+                  </div>
+
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-foreground truncate">{member.name}</p>
+                    <p className="text-xs text-muted-foreground mt-1 truncate">{member.role}</p>
+                    <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-3">Order {member.sort_order}</p>
+                  </div>
+                </div>
+
+                <div className="flex-1 grid gap-4 md:grid-cols-2">
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Name</label>
+                    <input
+                      defaultValue={member.name}
+                      onBlur={(e) => e.target.value !== member.name && updateMember(member.id, { name: e.target.value.trim() })}
+                      className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Role</label>
+                    <input
+                      defaultValue={member.role}
+                      onBlur={(e) => e.target.value !== member.role && updateMember(member.id, { role: e.target.value.trim() })}
+                      className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Bio</label>
+                    <textarea
+                      defaultValue={member.bio}
+                      onBlur={(e) => e.target.value !== member.bio && updateMember(member.id, { bio: e.target.value.trim() })}
+                      className="min-h-[96px] w-full resize-y bg-transparent border border-border px-3 py-3 text-sm outline-none transition-colors focus:border-foreground"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo URL</label>
+                    <input
+                      defaultValue={member.photo_url ?? ""}
+                      placeholder="https://...supabase.co/storage/v1/object/public/..."
+                      onBlur={(e) => e.target.value !== (member.photo_url ?? "") && updateMember(member.id, { photo_url: e.target.value.trim() || null }, "Photo updated")}
+                      className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">LinkedIn URL</label>
+                    <div className="flex items-center gap-2">
+                      <input
+                        defaultValue={member.linkedin_url ?? ""}
+                        placeholder="https://www.linkedin.com/in/..."
+                        onBlur={(e) => e.target.value !== (member.linkedin_url ?? "") && updateMember(member.id, { linkedin_url: e.target.value.trim() || null })}
+                        className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+                      />
+                      {member.linkedin_url ? (
+                        <a href={member.linkedin_url} target="_blank" rel="noreferrer" className="text-muted-foreground hover:text-foreground" aria-label={`${member.name} LinkedIn`}>
+                          <Linkedin className="w-4 h-4" />
+                        </a>
+                      ) : null}
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap items-end gap-3">
+                    <button
+                      type="button"
+                      onClick={() => toggleActive(member)}
+                      className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-foreground"
+                    >
+                      {member.is_active ? <Eye className="w-4 h-4" /> : <EyeOff className="w-4 h-4" />}
+                      {member.is_active ? "Active" : "Inactive"}
+                    </button>
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <button type="button" className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.25em] text-muted-foreground hover:text-destructive">
+                          <Trash2 className="w-4 h-4" />
+                          Delete
+                        </button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Delete team member?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This removes {member.name} from the CMS and the About page.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction onClick={() => deleteMember(member)}>Delete</AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <p className="mt-6 text-xs text-muted-foreground">Drag a row by the grip icon to change the display order on the About page.</p>
     </div>
   );
 }

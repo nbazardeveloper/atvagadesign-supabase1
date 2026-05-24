@@ -5,25 +5,25 @@ export const Route = createFileRoute("/terms")({
   component: Terms,
   head: () => ({
     meta: [
-      { title: "Terms of Use | Asti Designs" },
-      { name: "description", content: "Terms and conditions governing use of the Asti Designs website and engagement of decorative plaster services." },
+      { title: "Terms of Use | ATVAGA Designs" },
+      { name: "description", content: "Terms and conditions governing use of the ATVAGA Designs website and engagement of residential design services." },
       { name: "robots", content: "noindex" },
     ],
     links: [
-      { rel: "canonical", href: "https://astidesigns.com/terms" },
+      { rel: "canonical", href: "https://www.atvaga.com/terms" },
     ],
   }),
 });
 
 const EFFECTIVE_DATE = "June 1, 2026";
-const COMPANY = "Asti Designs";
+const COMPANY = "ATVAGA Designs";
 const STATE = "Washington";
 const EMAIL = "Asticonstructiontx@gmail.com";
 
 const sections = [
   {
     title: "Acceptance of Terms",
-    body: `By accessing or using the Asti Designs website (astidesigns.com) you agree to be bound by these Terms of Use. If you do not agree, please discontinue use of the site immediately. ${COMPANY} reserves the right to update these Terms at any time; continued use of the site following any change constitutes acceptance of the revised Terms.`,
+    body: `By accessing or using the ATVAGA Designs website (atvaga.com) you agree to be bound by these Terms of Use. If you do not agree, please discontinue use of the site immediately. ${COMPANY} reserves the right to update these Terms at any time; continued use of the site following any change constitutes acceptance of the revised Terms.`,
   },
   {
     title: "Use of the Website",
@@ -31,7 +31,7 @@ const sections = [
   },
   {
     title: "Intellectual Property",
-    body: `All content on this website — including photographs, text, graphics, the Asti Designs name and logo — is the exclusive property of ${COMPANY} or its licensors and is protected by United States and international copyright law. You may not reproduce, distribute, modify or create derivative works from any content without prior written permission from ${COMPANY}.`,
+    body: `All content on this website — including photographs, text, graphics, the ATVAGA Designs name and logo — is the exclusive property of ${COMPANY} or its licensors and is protected by United States and international copyright law. You may not reproduce, distribute, modify or create derivative works from any content without prior written permission from ${COMPANY}.`,
   },
   {
     title: "Project Estimates & Quotes",

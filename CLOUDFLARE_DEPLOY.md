@@ -25,13 +25,11 @@
 - `layoutGuardPlugin` защищает дизайн от регрессий при билде
 - Роут `/admin` защищён — проверяет `user_roles` перед рендером
 
-### ⚠️ Проблемы, которые нужно исправить перед деплоем
+### ⚠️ Что нужно проверить перед деплоем
 
-#### Проблема 1 — КРИТИЧНО: `vite.config.ts` настроен на Vercel
+#### Проверка 1 — `vite.config.ts` должен оставаться Cloudflare-first
 
-Активная конфигурация использует `nitro({ preset: "vercel" })`. Закомментированная Cloudflare-версия содержит баг: в ней тоже есть строка `nitro({ preset: "vercel" })`, которую забыли убрать.
-
-При деплое на Cloudflare `nitro` не нужен вообще — `@cloudflare/vite-plugin` полностью заменяет его.
+Текущая конфигурация уже использует `@cloudflare/vite-plugin` и не требует Vercel- или Nitro-пресетов. Для деплоя на Cloudflare достаточно оставить `cloudflare({ viteEnvironment: { name: "ssr" } })` первым в массиве плагинов.
 
 #### Проблема 2 — КРИТИЧНО: `wrangler.jsonc` указывает на исходники
 
@@ -53,9 +51,9 @@ Wrangler для деплоя должен получать **собранный*
 
 `client.server.ts` требует этот ключ, но нигде в проекте он пока не используется (ни один роут не импортирует `supabaseAdmin`). Не сломает деплой, но если понадобятся серверные операции с обходом RLS — нужно будет добавить.
 
-#### Проблема 5 — НЕКРИТИЧНО: `nitro` (nitro-nightly) в зависимостях
+#### Проверка 5 — НЕКРИТИЧНО: зависимости должны оставаться минимальными
 
-После перехода на Cloudflare этот пакет больше не нужен. Можно удалить для чистоты.
+Если в проекте остались пакеты, которые больше не участвуют в Cloudflare-сборке, их лучше удалить для чистоты lockfile и более прозрачного деплоя.
 
 ---
 
@@ -117,8 +115,8 @@ export default defineConfig({
 ```
 
 **Ключевые изменения:**
-- `cloudflare()` вместо `nitro({ preset: "vercel" })`
-- Убран импорт `nitro`
+- используется только `cloudflare()`
+- лишние server preset-зависимости не нужны
 - `cloudflare()` стоит первым в массиве плагинов (обязательно)
 
 ---
@@ -235,10 +233,10 @@ https://asti-designs-studio.YOUR_SUBDOMAIN.workers.dev
 
 ## 🔐 Важно: Supabase Auth Callback URL
 
-После смены домена с Vercel на Cloudflare обязательно обновить в **Supabase Dashboard → Authentication → URL Configuration**:
+После смены домена на Cloudflare обязательно обновить в **Supabase Dashboard → Authentication → URL Configuration**:
 
 - **Site URL**: `https://your-worker.workers.dev` (или кастомный домен)
-- **Redirect URLs**: добавить новый URL, можно оставить и старый Vercel-URL
+- **Redirect URLs**: добавить новый Cloudflare URL и любые дополнительные домены, которые реально используются
 
 Без этого логин через Supabase Auth не будет работать.
 
@@ -246,10 +244,10 @@ https://asti-designs-studio.YOUR_SUBDOMAIN.workers.dev
 
 ## 🧹 Опциональная чистка зависимостей
 
-После перехода на Cloudflare можно удалить:
+Если в проекте есть лишние пакеты от старой схемы деплоя, можно удалить их:
 
 ```bash
-bun remove nitro nitro-nightly
+npm uninstall nitro nitro-nightly
 ```
 
-И удалить `.vercel/` директорию из проекта (или добавить в `.gitignore`, что уже сделано).
+И удалить старые локальные артефакты деплоя, если они остались в рабочей директории.

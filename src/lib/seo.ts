@@ -1,5 +1,5 @@
-const SITE_NAME = "Asti Designs";
-const SITE_URL = "https://astidesigns.com";
+const SITE_NAME = "ATVAGA Designs";
+const SITE_URL = "https://www.atvaga.com";
 const DEFAULT_IMAGE_PATH = "/images/hero/hero.webp";
 const DEFAULT_IMAGE_WIDTH = "1200";
 const DEFAULT_IMAGE_HEIGHT = "630";
@@ -12,6 +12,7 @@ type SeoOptions = {
   title: string;
   description: string;
   path: string;
+  keywords?: string;
   imagePath?: string;
   imageAlt?: string;
   noindex?: boolean;
@@ -21,6 +22,7 @@ export function buildSeoMeta({
   title,
   description,
   path,
+  keywords,
   imagePath = DEFAULT_IMAGE_PATH,
   imageAlt = title,
   noindex = false,
@@ -32,6 +34,7 @@ export function buildSeoMeta({
     meta: [
       { title },
       { name: "description", content: description },
+      ...(keywords ? [{ name: "keywords", content: keywords }] : []),
       { property: "og:site_name", content: SITE_NAME },
       { property: "og:title", content: title },
       { property: "og:description", content: description },

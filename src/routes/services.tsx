@@ -1,86 +1,156 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { FadeIn } from "@/components/site/FadeIn";
+import { PageHero } from "@/components/site/PageHero";
 import { buildSeoMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/services")({
   component: Services,
   head: () =>
     buildSeoMeta({
-      title: "Services — Venetian Plaster, Microcement & More | Asti Designs",
-      description: "Venetian plaster, microcement, Tadelakt and bespoke decorative wall finishes. Premium artisan services for residential and commercial interiors nationwide.",
+      title: "Services | ADU Design, Permit Plans & Home Additions — ATVAGA Designs",
+      description:
+        "Full range of residential design services: ADU design, permit plans, home additions, 3D renderings, city permit submittals and engineering coordination.",
       path: "/services",
-      imageAlt: "Decorative plaster and microcement services by Asti Designs",
+      imageAlt: "ATVAGA Designs residential design and permit services",
     }),
 });
 
-const services = [
+const SERVICES = [
   {
     n: "01",
-    t: "Venetian Plaster",
-    d: "Lime-based plasters polished to a soft sheen or mirror gloss. Authentic marmorino, stucco veneziano, and burnished finishes.",
-    items: ["High-gloss veneziano", "Matte marmorino", "Burnished lime plaster", "Bathroom-grade waterproof Venetian"],
+    t: "Design Drawings",
+    d: "Precise, permit-ready design drawings that communicate your vision clearly to contractors and city reviewers.",
+    img: "/images/services/design-drawings.webp",
+    items: ["Floor plan layout", "Elevation drawings", "Section views", "Dimension and annotation sets"],
   },
   {
     n: "02",
-    t: "Microcement & Concrete",
-    d: "Seamless mineral coatings on walls, floors, and wet rooms. Industrial elegance with the refinement of plaster.",
-    items: ["Architectural microcement", "Concrete cire", "Cement-look surfaces", "Wet-room application"],
+    t: "Permit Plans",
+    d: "Comprehensive permit documentation packages built to Washington State municipal requirements for smooth approval.",
+    img: "/images/services/permit-plans.webp",
+    items: ["Site plans", "Structural notes", "Energy compliance", "Zoning compliance sheets"],
   },
   {
     n: "03",
-    t: "Custom Texturing",
-    d: "Bespoke decorative surfaces — rustic relief, skip-trowel rhythms, cloud blending, metallics and velvet finishes.",
-    items: ["Stone & travertine effects", "Metallic stucco", "Velvet & cloud finishes", "Sculptural relief textures"],
+    t: "ADU / DADU Design",
+    d: "Detached and attached accessory dwelling unit design from concept to permit-ready drawings — maximizing your property value.",
+    img: "/images/services/daduesign-card.jpg",
+    items: ["Detached ADU (DADU)", "Attached ADU", "Garage conversions", "Basement ADU conversions"],
+  },
+  {
+    n: "04",
+    t: "Additions & Remodels",
+    d: "Full-scope residential additions and interior remodel documentation, coordinated with structural engineers and city codes.",
+    img: "/images/services/additions-remodels.webp",
+    items: ["Room additions", "Second-story additions", "Kitchen & bath remodels", "Open-concept conversions"],
+  },
+  {
+    n: "05",
+    t: "Interior Layout Planning",
+    d: "Functional interior space planning that balances livability, light flow, and code compliance.",
+    img: "/images/services/interior-layout-planning.webp",
+    items: ["Space planning", "Furniture layout", "Traffic flow analysis", "Accessibility reviews"],
+  },
+  {
+    n: "06",
+    t: "Exterior & Facade Improvements",
+    d: "Facade redesign and exterior upgrade documentation to modernize curb appeal with permit-ready drawings.",
+    img: "/images/services/exterior-facade-Improvements.webp",
+    items: ["Facade redesigns", "Window & door changes", "Deck & porch additions", "Siding and cladding updates"],
+  },
+  {
+    n: "07",
+    t: "3D Renderings",
+    d: "Photorealistic 3D visualizations that bring your project to life before a single nail is driven.",
+    img: "/images/services/3D-renderings.webp",
+    items: ["Exterior 3D views", "Interior renders", "360° virtual tours", "Before/after comparisons"],
+  },
+  {
+    n: "08",
+    t: "City Permit Submittals",
+    d: "End-to-end permit submission management — we prepare, submit, track, and correct until approval is issued.",
+    img: "/images/services/city-permit-submittals.webp",
+    items: ["Online portal submissions", "Over-the-counter submittals", "Correction response packages", "Permit tracking"],
+  },
+  {
+    n: "09",
+    t: "Engineering Coordination",
+    d: "Seamless coordination with licensed structural, geotechnical, and MEP engineers to complete your drawing set.",
+    img: "/images/services/coordination-engineers.webp",
+    items: ["Structural engineering liaison", "Geotechnical reports", "MEP coordination", "SEPA documentation"],
   },
 ];
 
 function Services() {
   return (
     <>
-      <section className="container-luxe pt-24 pb-16">
-        <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Catalog of Services</p>
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-4xl">
-            Surfaces, considered.
-          </h1>
-        </FadeIn>
-      </section>
+      <PageHero
+        eyebrow="Catalog of Services"
+        title="Residential Design Services"
+        description="From first concept sketch to final city approval — ATVAGA Designs handles every stage of the residential design and permitting process across Washington State."
+        sectionClassName="pt-28 pb-16"
+        titleClassName="max-w-4xl"
+        descriptionClassName="max-w-2xl"
+      />
 
-      <section className="container-luxe py-12">
-        <div className="grid gap-px bg-border border border-border">
-          {services.map((s, i) => (
-            <FadeIn key={s.n} delay={i * 80}>
-              <div className="bg-background grid lg:grid-cols-12 gap-8 p-10 md:p-14">
-                <div className="lg:col-span-1">
-                  <p className="font-display text-foreground/40 text-3xl">{s.n}</p>
-                </div>
-                <div className="lg:col-span-5">
-                  <h2 className="font-display text-4xl md:text-5xl">{s.t}</h2>
-                  <p className="mt-6 text-muted-foreground leading-relaxed max-w-md">{s.d}</p>
-                </div>
-                <div className="lg:col-span-4">
-                  <ul className="space-y-3 mt-3">
-                    {s.items.map(item => (
-                      <li key={item} className="text-sm border-b border-border pb-3">{item}</li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="lg:col-span-2 flex lg:justify-end items-start">
-                  <Link to="/quote" className="text-[10px] uppercase tracking-[0.3em] link-underline">Estimate →</Link>
+      {/* Services list */}
+      <section className="section-wrap pb-24">
+        <div className="grid gap-px border border-border bg-border">
+          {SERVICES.map((s, i) => (
+            <div key={s.n} className="bg-white grid lg:grid-cols-12 gap-8 p-8 md:p-12">
+              <div className="lg:col-span-1">
+                <p className="font-italiana text-3xl text-brand-black-20">{s.n}</p>
+              </div>
+              <div className="lg:col-span-3 hidden lg:block">
+                <div className="aspect-[4/3] overflow-hidden">
+                  <img
+                    src={s.img}
+                    alt={s.t}
+                    className="h-full w-full object-cover object-center"
+                    loading={i < 3 ? "eager" : "lazy"}
+                  />
                 </div>
               </div>
-            </FadeIn>
+              <div className="lg:col-span-4">
+                <h2 className="font-italiana text-[2rem] text-brand-black">{s.t}</h2>
+                <p className="mt-4 max-w-md leading-relaxed text-brand-gray">{s.d}</p>
+              </div>
+              <div className="lg:col-span-3">
+                <ul className="space-y-3 mt-3">
+                  {s.items.map((item) => (
+                    <li key={item} className="border-b border-border pb-3 text-sm text-brand-gray">
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="lg:col-span-1 flex lg:justify-end items-start">
+                <Link
+                  to="/contact"
+                  className="cta-link whitespace-nowrap"
+                >
+                  Inquire →
+                </Link>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
-      <section className="bg-secondary py-24 mt-16">
-        <div className="container-luxe text-center">
-          <FadeIn>
-            <h2 className="font-display text-5xl">Every project is quoted by hand.</h2>
-            <p className="mt-6 text-muted-foreground">Material, square footage, wall condition, finish complexity — each variable shapes the proposal. Tell us about your space and we'll prepare a tailored estimate.</p>
-            <Link to="/quote" className="mt-10 inline-flex items-center px-10 py-4 bg-foreground text-background text-[10px] uppercase tracking-[0.3em]">Request Estimate</Link>
-          </FadeIn>
+      {/* CTA */}
+      <section className="w-full bg-brand-light py-24">
+        <div className="section-wrap text-center">
+          <span className="eyebrow">Get Started</span>
+          <h2 className="section-title">Every project is quoted individually.</h2>
+          <p className="mt-6 max-w-2xl text-brand-gray">
+            Project scope, square footage, site conditions, and timeline all shape the proposal. Tell us about
+            your project and we'll prepare a tailored estimate within 24 hours.
+          </p>
+          <Link
+            to="/contact"
+            className="cta-dark mt-10 px-10"
+          >
+            Request a Quote
+          </Link>
         </div>
       </section>
     </>

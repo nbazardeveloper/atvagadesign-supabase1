@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { FadeIn } from "@/components/site/FadeIn";
 import { useState } from "react";
 import { z } from "zod";
 import { submitLead } from "../lib/lead-submission";
@@ -11,10 +10,11 @@ export const Route = createFileRoute("/quote")({
   component: Quote,
   head: () =>
     buildSeoMeta({
-      title: "Request a Free Estimate | Asti Designs",
-      description: "Receive a tailored estimate for your decorative plaster, microcement or Venetian finish project. Every quote is hand-prepared by the studio.",
+      title: "Request a Quote — Residential Design & Permit Plans | ATVAGA Designs",
+      description:
+        "Get a tailored estimate for your residential design, ADU/DADU, permit plans, or remodel project. Every quote is prepared individually by ATVAGA Designs.",
       path: "/quote",
-      imageAlt: "Request a decorative plaster estimate from Asti Designs",
+      imageAlt: "Request a quote from ATVAGA Designs",
     }),
 });
 
@@ -28,24 +28,29 @@ const schema = z.object({
 function Quote() {
   const [step, setStep] = useState(0);
   const [form, setForm] = useState({
-    finish: "",
-    size: "",
-    walls: "",
+    serviceType: "",
+    sqft: "",
+    projectStage: "",
     timeline: "",
-    name: "",
+    firstName: "",
+    lastName: "",
     phone: "",
     email: "",
+    propertyAddress: "",
     notes: "",
   });
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  const update = (k: keyof typeof form, v: string) => setForm(p => ({ ...p, [k]: v }));
+  const update = (k: keyof typeof form, v: string) => setForm((p) => ({ ...p, [k]: v }));
 
   const submit = async () => {
-    const details = `Finish preference: ${form.finish}\nProject size: ${form.size}\nWall condition: ${form.walls}\nTimeline: ${form.timeline}\nNotes: ${form.notes}`;
+    const details = `Service type: ${form.serviceType}\nProject size: ${form.sqft}\nProject stage: ${form.projectStage}\nTimeline: ${form.timeline}\nProperty address: ${form.propertyAddress}\nNotes: ${form.notes}`;
     const parsed = schema.safeParse({
-      name: form.name, phone: form.phone, email: form.email || undefined, project_details: details,
+      name: `${form.firstName} ${form.lastName}`.trim(),
+      phone: form.phone,
+      email: form.email || undefined,
+      project_details: details,
     });
     if (!parsed.success) {
       toast.error(parsed.error.issues[0]?.message ?? "Please complete the form");
@@ -53,10 +58,14 @@ function Quote() {
     }
     setSubmitting(true);
     const { error } = await submitLead({
-      name: parsed.data.name,
-      phone: parsed.data.phone,
-      email: parsed.data.email || null,
+      first_name: form.firstName,
+      last_name: form.lastName,
+      phone: form.phone,
+      email: form.email || null,
+      property_name: null,
+      property_address: form.propertyAddress || null,
       project_details: details,
+      marketing_consent: false,
       source: "quote_form",
     });
     setSubmitting(false);
@@ -69,43 +78,78 @@ function Quote() {
 
   const steps = [
     {
-      label: "Finish preference",
+      label: "Service type",
       content: (
         <div className="grid sm:grid-cols-2 gap-3">
-          {["Venetian plaster", "Microcement / concrete", "Stone or metallic effect", "Bespoke / custom"].map(opt => (
+          {[
+            "ADU / DADU Design",
+            "Home Addition",
+            "Full Remodel",
+            "Permit Plans Only",
+            "3D Rendering",
+            "Design Drawings",
+          ].map((opt) => (
             <button
               key={opt}
-              onClick={() => { update("finish", opt); setStep(1); }}
-              className={`p-6 border text-left text-sm transition ${form.finish === opt ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}
-            >{opt}</button>
+              onClick={() => { update("serviceType", opt); setStep(1); }}
+              className={`p-6 border text-left text-sm transition-colors ${
+                form.serviceType === opt
+                  ? "border-brand-black bg-brand-black text-white"
+                  : "border-border hover-border-brand-black"
+              }`}
+            >
+              {opt}
+            </button>
           ))}
         </div>
       ),
     },
     {
-      label: "Project size",
+      label: "Approximate project size",
       content: (
         <div className="grid sm:grid-cols-2 gap-3">
-          {["Single wall / feature", "1–2 rooms", "Whole residence", "Commercial / large-scale"].map(opt => (
+          {[
+            "Under 500 sq ft",
+            "500 – 1,000 sq ft",
+            "1,000 – 2,500 sq ft",
+            "Over 2,500 sq ft",
+          ].map((opt) => (
             <button
               key={opt}
-              onClick={() => { update("size", opt); setStep(2); }}
-              className={`p-6 border text-left text-sm transition ${form.size === opt ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}
-            >{opt}</button>
+              onClick={() => { update("sqft", opt); setStep(2); }}
+              className={`p-6 border text-left text-sm transition-colors ${
+                form.sqft === opt
+                  ? "border-brand-black bg-brand-black text-white"
+                  : "border-border hover-border-brand-black"
+              }`}
+            >
+              {opt}
+            </button>
           ))}
         </div>
       ),
     },
     {
-      label: "Wall condition",
+      label: "Project stage",
       content: (
         <div className="grid sm:grid-cols-2 gap-3">
-          {["New construction, primed", "Existing painted walls", "Needs significant prep", "Not sure — please advise"].map(opt => (
+          {[
+            "Early planning — exploring options",
+            "Ready to start design",
+            "Need permit drawings only",
+            "Already have plans — need permit help",
+          ].map((opt) => (
             <button
               key={opt}
-              onClick={() => { update("walls", opt); setStep(3); }}
-              className={`p-6 border text-left text-sm transition ${form.walls === opt ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}
-            >{opt}</button>
+              onClick={() => { update("projectStage", opt); setStep(3); }}
+              className={`p-6 border text-left text-sm transition-colors ${
+                form.projectStage === opt
+                  ? "border-brand-black bg-brand-black text-white"
+                  : "border-border hover-border-brand-black"
+              }`}
+            >
+              {opt}
+            </button>
           ))}
         </div>
       ),
@@ -114,12 +158,23 @@ function Quote() {
       label: "Timeline",
       content: (
         <div className="grid sm:grid-cols-2 gap-3">
-          {["Within 1 month", "1–3 months", "3–6 months", "Planning / flexible"].map(opt => (
+          {[
+            "ASAP — urgent",
+            "Within 1–2 months",
+            "3–6 months out",
+            "Planning stage — flexible",
+          ].map((opt) => (
             <button
               key={opt}
               onClick={() => { update("timeline", opt); setStep(4); }}
-              className={`p-6 border text-left text-sm transition ${form.timeline === opt ? "border-foreground bg-foreground text-background" : "border-border hover:border-foreground"}`}
-            >{opt}</button>
+              className={`p-6 border text-left text-sm transition-colors ${
+                form.timeline === opt
+                  ? "border-brand-black bg-brand-black text-white"
+                  : "border-border hover-border-brand-black"
+              }`}
+            >
+              {opt}
+            </button>
           ))}
         </div>
       ),
@@ -128,16 +183,37 @@ function Quote() {
       label: "Your details",
       content: (
         <div className="grid md:grid-cols-2 gap-5">
-          <Input label="Name *" value={form.name} onChange={v => update("name", v)} />
-          <Input label="Phone *" type="tel" value={form.phone} onChange={v => update("phone", v)} />
-          <Input label="Email" type="email" value={form.email} onChange={v => update("email", v)} className="md:col-span-2" />
+          <Input label="First Name *" value={form.firstName} onChange={(v) => update("firstName", v)} />
+          <Input label="Last Name *" value={form.lastName} onChange={(v) => update("lastName", v)} />
+          <Input label="Email *" type="email" value={form.email} onChange={(v) => update("email", v)} />
+          <Input label="Phone *" type="tel" value={form.phone} onChange={(v) => update("phone", v)} />
+          <Input label="Property Street Address" value={form.propertyAddress} onChange={(v) => update("propertyAddress", v)} className="md:col-span-2" />
           <div className="md:col-span-2">
-            <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Additional notes</label>
-            <textarea rows={4} value={form.notes} onChange={e => update("notes", e.target.value)} className="w-full bg-transparent border-b border-border focus:border-foreground py-3 outline-none text-sm resize-none" />
+            <label className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-brand-gray">
+              Additional notes
+            </label>
+            <textarea
+              rows={4}
+              value={form.notes}
+              onChange={(e) => update("notes", e.target.value)}
+              className="input-underline resize-none"
+              placeholder="Any details about goals, timeline, or constraints"
+            />
           </div>
           <div className="md:col-span-2 flex flex-wrap gap-4 pt-4">
-            <button onClick={() => setStep(3)} className="px-8 py-3 border border-border text-[10px] uppercase tracking-[0.3em]">Back</button>
-            <button onClick={submit} disabled={submitting} className="px-10 py-3 bg-foreground text-background text-[10px] uppercase tracking-[0.3em] disabled:opacity-60">{submitting ? "Sending…" : "Submit Request"}</button>
+            <button
+              onClick={() => setStep(3)}
+              className="btn-base border border-border px-8 text-brand-gray transition-colors hover-border-brand-black hover-text-brand-black"
+            >
+              Back
+            </button>
+            <button
+              onClick={submit}
+              disabled={submitting}
+              className="cta-dark px-10 disabled:opacity-60"
+            >
+              {submitting ? "Sending…" : "Submit Request"}
+            </button>
           </div>
         </div>
       ),
@@ -146,45 +222,67 @@ function Quote() {
 
   if (done) {
     return (
-      <section className="container-luxe py-32 text-center">
-        <FadeIn>
-          <div className="inline-flex w-16 h-16 rounded-full border border-foreground items-center justify-center"><Check /></div>
-          <h1 className="mt-8 font-display text-5xl">Thank you.</h1>
-          <p className="mt-4 text-muted-foreground">Your request has been received. Our studio will reach out within 24 hours to schedule a consultation.</p>
-        </FadeIn>
+      <section className="section-wrap py-32 text-center">
+        <div className="inline-flex h-16 w-16 items-center justify-center border border-brand-black">
+          <Check className="w-6 h-6" />
+        </div>
+        <h1 className="mt-8 font-italiana text-5xl text-brand-black">Thank You.</h1>
+        <p className="mt-4 text-brand-gray">
+          Your request has been received. We'll respond within 24 hours to schedule a consultation.
+        </p>
       </section>
     );
   }
 
   return (
     <>
-      <section className="container-luxe pt-24 pb-12">
-        <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Step {step + 1} of {steps.length}</p>
-          <h1 className="mt-6 font-display text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1] tracking-[-0.03em]">Request your estimate.</h1>
-          <div className="mt-8 flex gap-2">
-            {steps.map((_, i) => (
-              <div key={i} className={`h-px flex-1 transition ${i <= step ? "bg-foreground" : "bg-border"}`} />
-            ))}
-          </div>
-        </FadeIn>
+      <section className="section-wrap pt-28 pb-12">
+        <span className="eyebrow">Step {step + 1} of {steps.length}</span>
+        <h1 className="mt-6 font-italiana text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1] text-brand-black">
+          Request Your Estimate.
+        </h1>
+        <div className="mt-8 flex gap-2">
+          {steps.map((_, i) => (
+            <div
+              key={i}
+              className={`h-px flex-1 transition-colors ${i <= step ? "bg-brand-black" : "bg-border"}`}
+            />
+          ))}
+        </div>
       </section>
 
-      <section className="container-luxe pb-32">
-        <FadeIn key={step}>
-          <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground mb-6">{steps[step].label}</p>
-          {steps[step].content}
-        </FadeIn>
+      <section className="section-wrap pb-32">
+        <p className="mb-6 text-[0.65rem] uppercase tracking-[0.3em] text-brand-gray">
+          {steps[step].label}
+        </p>
+        {steps[step].content}
       </section>
     </>
   );
 }
 
-function Input({ label, value, onChange, type = "text", className = "" }: { label: string; value: string; onChange: (v: string) => void; type?: string; className?: string }) {
+function Input({
+  label,
+  value,
+  onChange,
+  type = "text",
+  className = "",
+}: {
+  label: string;
+  value: string;
+  onChange: (v: string) => void;
+  type?: string;
+  className?: string;
+}) {
   return (
     <div className={className}>
-      <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">{label}</label>
-      <input value={value} onChange={e => onChange(e.target.value)} type={type} className="w-full bg-transparent border-b border-border focus:border-foreground py-3 outline-none text-sm" />
+      <label className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-brand-gray">{label}</label>
+      <input
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        type={type}
+        className="input-underline"
+      />
     </div>
   );
 }

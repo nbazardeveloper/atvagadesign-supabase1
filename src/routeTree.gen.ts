@@ -17,8 +17,10 @@ import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ContactsRouteImport } from './routes/contacts'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
+import { Route as R3dRenderingRouteImport } from './routes/3d-rendering'
 import { Route as IndexRouteImport } from './routes/index'
 
 const TermsRoute = TermsRouteImport.update({
@@ -61,6 +63,11 @@ const ContactsRoute = ContactsRouteImport.update({
   path: '/contacts',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminRoute = AdminRouteImport.update({
   id: '/admin',
   path: '/admin',
@@ -71,6 +78,11 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
+const R3dRenderingRoute = R3dRenderingRouteImport.update({
+  id: '/3d-rendering',
+  path: '/3d-rendering',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -79,8 +91,10 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/3d-rendering': typeof R3dRenderingRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/contacts': typeof ContactsRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -92,8 +106,10 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/3d-rendering': typeof R3dRenderingRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/contacts': typeof ContactsRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -106,8 +122,10 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/3d-rendering': typeof R3dRenderingRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
+  '/contact': typeof ContactRoute
   '/contacts': typeof ContactsRoute
   '/faq': typeof FaqRoute
   '/login': typeof LoginRoute
@@ -121,8 +139,10 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/3d-rendering'
     | '/about'
     | '/admin'
+    | '/contact'
     | '/contacts'
     | '/faq'
     | '/login'
@@ -134,8 +154,10 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/3d-rendering'
     | '/about'
     | '/admin'
+    | '/contact'
     | '/contacts'
     | '/faq'
     | '/login'
@@ -147,8 +169,10 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/3d-rendering'
     | '/about'
     | '/admin'
+    | '/contact'
     | '/contacts'
     | '/faq'
     | '/login'
@@ -161,8 +185,10 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  R3dRenderingRoute: typeof R3dRenderingRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
+  ContactRoute: typeof ContactRoute
   ContactsRoute: typeof ContactsRoute
   FaqRoute: typeof FaqRoute
   LoginRoute: typeof LoginRoute
@@ -231,6 +257,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ContactsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin': {
       id: '/admin'
       path: '/admin'
@@ -245,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/3d-rendering': {
+      id: '/3d-rendering'
+      path: '/3d-rendering'
+      fullPath: '/3d-rendering'
+      preLoaderRoute: typeof R3dRenderingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -257,8 +297,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  R3dRenderingRoute: R3dRenderingRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
+  ContactRoute: ContactRoute,
   ContactsRoute: ContactsRoute,
   FaqRoute: FaqRoute,
   LoginRoute: LoginRoute,

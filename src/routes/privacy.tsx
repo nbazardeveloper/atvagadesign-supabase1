@@ -5,24 +5,24 @@ export const Route = createFileRoute("/privacy")({
   component: Privacy,
   head: () => ({
     meta: [
-      { title: "Privacy Policy | Asti Designs" },
-      { name: "description", content: "How Asti Designs collects, uses and protects personal information submitted through our website." },
+      { title: "Privacy Policy | ATVAGA Designs" },
+      { name: "description", content: "How ATVAGA Designs collects, uses and protects personal information submitted through our website." },
       { name: "robots", content: "noindex" },
     ],
     links: [
-      { rel: "canonical", href: "https://astidesigns.com/privacy" },
+      { rel: "canonical", href: "https://www.atvaga.com/privacy" },
     ],
   }),
 });
 
 const EFFECTIVE_DATE = "June 1, 2026";
-const COMPANY = "Asti Designs";
+const COMPANY = "ATVAGA Designs";
 const EMAIL = "Asticonstructiontx@gmail.com";
 
 const sections = [
   {
     title: "Who We Are",
-    body: `${COMPANY} is a decorative plaster and Venetian finish studio based in Seattle, Washington. This Privacy Policy explains how we collect, use, disclose and safeguard your personal information when you visit astidesigns.com or submit an inquiry through our website.`,
+    body: `${COMPANY} is a residential design firm based in Seattle, Washington. This Privacy Policy explains how we collect, use, disclose and safeguard your personal information when you visit atvaga.com or submit an inquiry through our website.`,
   },
   {
     title: "Information We Collect",

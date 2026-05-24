@@ -49,34 +49,37 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     ...buildSeoMeta({
-      title: "Asti Designs — Luxury Decorative Plaster & Venetian Finish Studio",
-      description: "Hand-crafted Venetian plaster, microcement, marble, stone and concrete decorative wall finishes for premium interiors.",
+      title: "ATVAGA Designs | ADU & Residential Design Services in Washington State",
+      description: "Modern residential design, ADU plans, permit-ready drawings and home additions in Seattle, Bellevue, Kirkland, Tacoma and surrounding areas. Fast turnaround. City permit submittals.",
+      keywords: "ADU design Washington, permit plans Seattle, permit plans Bellevue, home addition design, residential remodel design, ADU permit Seattle",
       path: "/",
-      imageAlt: "Asti Designs decorative plaster feature wall",
+      imageAlt: "ATVAGA Designs residential project",
     }),
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       ...buildSeoMeta({
-        title: "Asti Designs — Luxury Decorative Plaster & Venetian Finish Studio",
-        description: "Hand-crafted Venetian plaster, microcement, marble, stone and concrete decorative wall finishes for premium interiors.",
+        title: "ATVAGA Designs | ADU & Residential Design Services in Washington State",
+        description: "Modern residential design, ADU plans, permit-ready drawings and home additions in Seattle, Bellevue, Kirkland, Tacoma and surrounding areas. Fast turnaround. City permit submittals.",
+        keywords: "ADU design Washington, permit plans Seattle, permit plans Bellevue, home addition design, residential remodel design, ADU permit Seattle",
         path: "/",
-        imageAlt: "Asti Designs decorative plaster feature wall",
+        imageAlt: "ATVAGA Designs residential project",
       }).meta,
     ],
     links: [
       ...buildSeoMeta({
-        title: "Asti Designs — Luxury Decorative Plaster & Venetian Finish Studio",
-        description: "Hand-crafted Venetian plaster, microcement, marble, stone and concrete decorative wall finishes for premium interiors.",
+        title: "ATVAGA Designs | ADU & Residential Design Services in Washington State",
+        description: "Modern residential design, ADU plans, permit-ready drawings and home additions in Seattle, Bellevue, Kirkland, Tacoma and surrounding areas. Fast turnaround. City permit submittals.",
+        keywords: "ADU design Washington, permit plans Seattle, permit plans Bellevue, home addition design, residential remodel design, ADU permit Seattle",
         path: "/",
-        imageAlt: "Asti Designs decorative plaster feature wall",
+        imageAlt: "ATVAGA Designs residential project",
       }).links,
       { rel: "icon", href: "/favicon.ico", sizes: "any" },
       { rel: "shortcut icon", href: "/favicon.ico" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Plus+Jakarta+Sans:wght@400;500&display=swap" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Italiana&family=Manrope:wght@400;500;600;700&family=Spectral:ital,wght@0,400;0,600;1,400&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -87,34 +90,18 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 const schemaOrgJsonLd = JSON.stringify({
   "@context": "https://schema.org",
-  "@type": ["LocalBusiness", "ProfessionalService"],
+  "@type": "LocalBusiness",
   "name": seoDefaults.siteName,
-  "description": "Luxury decorative plaster and Venetian finish studio specialising in hand-crafted Venetian plaster, microcement, marble and stone wall finishes for premium interiors.",
+  "description": "Residential design and ADU drafting services in Washington State",
   "url": seoDefaults.siteUrl,
-  "image": `${seoDefaults.siteUrl}${seoDefaults.defaultImagePath}`,
-  "priceRange": "$$$$",
+  "areaServed": ["Seattle", "Bellevue", "Kirkland", "Redmond", "Tacoma", "Renton", "Everett"],
   "serviceType": [
-    "Venetian Plaster",
-    "Microcement",
-    "Tadelakt",
-    "Burnished Lime Plaster",
-    "Decorative Wall Finishes",
-    "Concrete Effect"
-  ],
-  "areaServed": {
-    "@type": "Country",
-    "name": "United States"
-  },
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Decorative Plaster Services",
-    "itemListElement": [
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Venetian Plaster" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Microcement & Concrete Effect" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Tadelakt" } },
-      { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Decorative Textures" } }
-    ]
-  }
+    "ADU Design",
+    "Permit Plans",
+    "Home Additions",
+    "Drafting Services",
+    "3D Renderings"
+  ]
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
@@ -127,7 +114,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{ __html: schemaOrgJsonLd }}
         />
       </head>
-      <body className="font-sans [&_h1]:font-heading [&_h2]:font-heading [&_h3]:font-heading [&_h4]:font-heading">
+      <body>
         {children}
         <Scripts />
       </body>

@@ -10,10 +10,10 @@ export const Route = createFileRoute("/portfolio")({
   component: Portfolio,
   head: () =>
     buildSeoMeta({
-      title: "Portfolio — Decorative Plaster Projects | Asti Designs",
-      description: "Explore completed Venetian plaster, microcement, marble, stone and decorative wall finish projects by Asti Designs studio.",
+      title: "Portfolio — Residential Design Projects | ATVAGA Designs",
+      description: "Explore completed ADU/DADU, home additions, remodels, and permit plan projects by ATVAGA Designs across Seattle and Washington State.",
       path: "/portfolio",
-      imageAlt: "Portfolio of decorative plaster projects by Asti Designs",
+      imageAlt: "Portfolio of residential design projects by ATVAGA Designs",
     }),
 });
 
@@ -43,8 +43,8 @@ function Portfolio() {
     <>
       <section className="container-luxe pt-24 pb-12">
         <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Portfolio Archive</p>
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em]">Selected finishes.</h1>
+          <span className="eyebrow">Portfolio Archive</span>
+          <h1 className="mt-6 font-italiana text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] text-brand-black">Selected Projects.</h1>
         </FadeIn>
       </section>
 

@@ -18,32 +18,86 @@ export type Database = {
         Row: {
           created_at: string
           email: string | null
+          first_name: string | null
           id: string
+          last_name: string | null
+          marketing_consent: boolean
           name: string
           phone: string
           project_details: string | null
+          property_address: string | null
+          property_name: string | null
           source: string
           status: string
         }
         Insert: {
           created_at?: string
           email?: string | null
+          first_name?: string | null
           id?: string
-          name: string
+          last_name?: string | null
+          marketing_consent?: boolean
+          name?: string
           phone: string
           project_details?: string | null
+          property_address?: string | null
+          property_name?: string | null
           source?: string
           status?: string
         }
         Update: {
           created_at?: string
           email?: string | null
+          first_name?: string | null
           id?: string
+          last_name?: string | null
+          marketing_consent?: boolean
           name?: string
           phone?: string
           project_details?: string | null
+          property_address?: string | null
+          property_name?: string | null
           source?: string
           status?: string
+        }
+        Relationships: []
+      }
+      team_members: {
+        Row: {
+          bio: string
+          created_at: string
+          id: string
+          is_active: boolean
+          linkedin_url: string | null
+          name: string
+          photo_url: string | null
+          role: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          bio: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          linkedin_url?: string | null
+          name: string
+          photo_url?: string | null
+          role: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          bio?: string
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          linkedin_url?: string | null
+          name?: string
+          photo_url?: string | null
+          role?: string
+          sort_order?: number
+          updated_at?: string
         }
         Relationships: []
       }

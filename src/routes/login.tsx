@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
@@ -6,11 +6,11 @@ import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/login")({
   component: Login,
-  head: () => ({ meta: [{ title: "Studio Login — Asti Designs" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Studio Login — ATVAGA Designs" }, { name: "robots", content: "noindex" }] }),
 });
 
 function Login() {
-  const navigate = useNavigate();
+  const navigate = Route.useNavigate();
   const { user, isAdmin, loading } = useAuth();
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
