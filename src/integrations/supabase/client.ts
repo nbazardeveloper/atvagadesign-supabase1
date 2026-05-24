@@ -2,11 +2,26 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
+function getRuntimeEnv() {
+  if (typeof window !== 'undefined') {
+    return (window as unknown as Record<string, Record<string, string>>).__RUNTIME_ENV__ ?? {};
+  }
+  return {};
+}
+
 function createSupabaseClient() {
-  // Use import.meta.env for client-side (Vite build-time replacement)
-  // Fall back to process.env for SSR (server-side rendering)
-  const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || process.env.SUPABASE_URL;
-  const SUPABASE_PUBLISHABLE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY || process.env.SUPABASE_PUBLISHABLE_KEY;
+  const runtime = getRuntimeEnv();
+  // 1. Build-time (local dev via .env)
+  // 2. Runtime injection from Worker (production)
+  // 3. SSR process.env fallback
+  const SUPABASE_URL =
+    import.meta.env.VITE_SUPABASE_URL ||
+    runtime.SUPABASE_URL ||
+    process.env.SUPABASE_URL;
+  const SUPABASE_PUBLISHABLE_KEY =
+    import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY ||
+    runtime.SUPABASE_PUBLISHABLE_KEY ||
+    process.env.SUPABASE_PUBLISHABLE_KEY;
 
   if (!SUPABASE_URL || !SUPABASE_PUBLISHABLE_KEY) {
     const missing = [

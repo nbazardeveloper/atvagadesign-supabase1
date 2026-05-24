@@ -7,6 +7,12 @@ type ServerEntry = {
   fetch: (request: Request, env: unknown, ctx: unknown) => Promise<Response> | Response;
 };
 
+type WorkerEnv = {
+  SUPABASE_URL?: string;
+  SUPABASE_PUBLISHABLE_KEY?: string;
+  [key: string]: unknown;
+};
+
 let serverEntryPromise: Promise<ServerEntry> | undefined;
 
 async function getServerEntry(): Promise<ServerEntry> {
@@ -66,12 +72,30 @@ async function normalizeCatastrophicSsrResponse(response: Response): Promise<Res
   return brandedErrorResponse();
 }
 
+async function injectRuntimeEnv(response: Response, env: WorkerEnv): Promise<Response> {
+  const contentType = response.headers.get("content-type") ?? "";
+  if (!contentType.includes("text/html")) return response;
+
+  const html = await response.text();
+  const config = JSON.stringify({
+    SUPABASE_URL: env.SUPABASE_URL ?? "",
+    SUPABASE_PUBLISHABLE_KEY: env.SUPABASE_PUBLISHABLE_KEY ?? "",
+  });
+  const script = `<script>window.__RUNTIME_ENV__=${config}</script>`;
+  const modified = html.replace("</head>", `${script}</head>`);
+
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
+  return new Response(modified, { status: response.status, headers });
+}
+
 export default {
   async fetch(request: Request, env: unknown, ctx: unknown) {
     try {
       const handler = await getServerEntry();
       const response = await handler.fetch(request, env, ctx);
-      return await normalizeCatastrophicSsrResponse(response);
+      const normalized = await normalizeCatastrophicSsrResponse(response);
+      return await injectRuntimeEnv(normalized, env as WorkerEnv);
     } catch (error) {
       console.error(error);
       return brandedErrorResponse();

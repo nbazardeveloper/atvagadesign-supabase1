@@ -8,8 +8,9 @@
     "binding": "ASSETS"
   },
   // Non-secret runtime vars — visible to the Worker at runtime via process.env.*
-  // NEVER put secret keys here (use `wrangler secret put` instead)
+  // These are injected into the HTML at request time (see src/server.ts)
   "vars": {
-    "SUPABASE_URL": "https://knqcgebewtbbwejmmmbg.supabase.co"
+    "SUPABASE_URL": "https://knqcgebewtbbwejmmmbg.supabase.co",
+    "SUPABASE_PUBLISHABLE_KEY": "sb_publishable_dl_lr3sGbtURYd5GZ0MSwg_RU9IIKkx"
   }
 }
