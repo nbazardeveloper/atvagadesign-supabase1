@@ -1,6 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
+import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
 import { useEffect, useState } from "react";
-import { SITE_PHONE_HREF } from "@/lib/contact-info";
+import {
+  SITE_EMAIL_HREF,
+  SITE_FACEBOOK_URL,
+  SITE_INSTAGRAM_URL,
+  SITE_LINKEDIN_URL,
+  SITE_PHONE_HREF,
+} from "@/lib/contact-info";
 
 const NAV_LINKS = [
   { to: "/about", label: "About Us" },
@@ -16,6 +23,13 @@ const MOBILE_CALL_LINK = {
   label: "Call",
 } as const;
 
+const MOBILE_SOCIAL_LINKS = [
+  { href: SITE_INSTAGRAM_URL, label: "Instagram", icon: Instagram },
+  { href: SITE_FACEBOOK_URL, label: "Facebook", icon: Facebook },
+  { href: SITE_LINKEDIN_URL, label: "LinkedIn", icon: Linkedin },
+  { href: SITE_EMAIL_HREF, label: "Email", icon: Mail },
+] as const;
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,6 +39,7 @@ export function Header() {
   const isHome = pathname === "/";
   const isTransparent = isHome && !scrolled;
   const isMenuVisible = isTransparent && menuOpen;
+  const isDrawerOpen = isTransparent ? isMenuVisible : menuOpen;
 
   useEffect(() => {
     const onScroll = () => {
@@ -122,9 +137,9 @@ export function Header() {
             onClick={() => setMenuOpen((o) => !o)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
           >
-            <span className={["block h-px w-6 bg-current transition-transform", isMenuVisible ? "translate-y-[7px] rotate-45" : ""].join(" ")} />
-            <span className={["block h-px bg-current transition-all", isMenuVisible ? "w-6 opacity-0" : "w-4"].join(" ")} />
-            <span className={["block h-px w-6 bg-current transition-transform", isMenuVisible ? "-translate-y-[7px] -rotate-45" : ""].join(" ")} />
+            <span className={["block h-px w-6 bg-current transition-transform", isDrawerOpen ? "translate-y-[7px] rotate-45" : ""].join(" ")} />
+            <span className={["block h-px bg-current transition-all", isDrawerOpen ? "w-6 opacity-0" : "w-4"].join(" ")} />
+            <span className={["block h-px w-6 bg-current transition-transform", isDrawerOpen ? "-translate-y-[7px] -rotate-45" : ""].join(" ")} />
           </button>
         </div>
       </div>
@@ -171,6 +186,25 @@ export function Header() {
           >
             {isTransparent ? "Start Your Project" : "Get a Quote"}
           </Link>
+          <div className="mt-6 flex items-center gap-4">
+            {MOBILE_SOCIAL_LINKS.map(({ href, label, icon: Icon }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={label}
+                className={[
+                  "inline-flex h-11 w-11 items-center justify-center rounded-full border transition-colors",
+                  isTransparent
+                    ? "border-white/20 text-white/80 hover:border-white hover:text-white"
+                    : "border-brand-light text-brand-black hover:border-brand-black hover:text-brand-pink",
+                ].join(" ")}
+              >
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
         </nav>
       </div>
     </header>

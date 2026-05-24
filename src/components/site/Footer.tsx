@@ -1,5 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Instagram } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Mail } from "lucide-react";
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_HREF,
+  SITE_FACEBOOK_URL,
+  SITE_INSTAGRAM_URL,
+  SITE_LINKEDIN_URL,
+} from "@/lib/contact-info";
 
 const FOOTER_LINKS = {
   Services: [
@@ -21,6 +28,33 @@ const FOOTER_LINKS = {
 };
 
 export function Footer() {
+  const socialLinks = [
+    {
+      href: SITE_INSTAGRAM_URL,
+      label: "Instagram",
+      text: "Follow Us on Instagram",
+      icon: Instagram,
+    },
+    {
+      href: SITE_FACEBOOK_URL,
+      label: "Facebook",
+      text: "Follow Us on Facebook",
+      icon: Facebook,
+    },
+    {
+      href: SITE_LINKEDIN_URL,
+      label: "LinkedIn",
+      text: "Connect on LinkedIn",
+      icon: Linkedin,
+    },
+    {
+      href: SITE_EMAIL_HREF,
+      label: "Email",
+      text: SITE_EMAIL,
+      icon: Mail,
+    },
+  ] as const;
+
   return (
     <footer className="w-full">
       {/* CTA section */}
@@ -99,15 +133,20 @@ export function Footer() {
                 <p>Mon – Fri: 9am – 5pm</p>
                 <p>Seattle, Washington</p>
               </div>
-              <a
-                href="https://www.instagram.com/atvaga_llc?igsh=MWc2Y2NjbWJkMDB6Nw%3D%3D&utm_source=qr"
-                target="_blank"
-                rel="noreferrer"
-                className="mt-6 inline-flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-black transition-colors hover-text-brand-pink"
-              >
-                <Instagram className="h-4 w-4" />
-                Follow Us on Instagram
-              </a>
+              <div className="mt-6 space-y-4">
+                {socialLinks.map(({ href, label, text, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-brand-black transition-colors hover-text-brand-pink"
+                  >
+                    <Icon className="h-4 w-4" />
+                    {text}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
