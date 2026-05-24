@@ -18,7 +18,7 @@ export const Route = createFileRoute("/terms")({
 const EFFECTIVE_DATE = "June 1, 2026";
 const COMPANY = "ATVAGA Designs";
 const STATE = "Washington";
-const EMAIL = "Asticonstructiontx@gmail.com";
+const EMAIL = "rihanna@atvaga.com";
 
 const sections = [
   {
