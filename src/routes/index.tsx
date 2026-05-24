@@ -265,8 +265,8 @@ function Home() {
                 to="/services"
                 className="group relative block w-[14.5rem] shrink-0 snap-start overflow-hidden bg-white sm:w-[15.5rem] lg:w-[16.75rem]"
               >
-                <div className="border border-[#e5e5e5] bg-white px-4 pt-4">
-                  <div className="relative aspect-[0.8/1] overflow-hidden rounded-t-[40%] bg-brand-light">
+                <div className="bg-white px-4 pt-4">
+                  <div className="relative aspect-[0.8/1] overflow-hidden rounded-t-[50%] bg-brand-light">
                     <img
                       src={src}
                       alt={title}
@@ -276,7 +276,7 @@ function Home() {
                     <div className="absolute inset-0 bg-brand-black-20 transition-colors group-hover:bg-brand-black-10" />
                   </div>
                 </div>
-                <div className="flex min-h-[4.75rem] items-center border-x border-b border-[#e5e5e5] bg-white px-4 py-4">
+                <div className="flex min-h-[4.75rem] items-center bg-white px-4 py-4">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</p>
                 </div>
               </Link>

@@ -81,7 +81,7 @@
   *::before,
   *::after {
     border-color: var(--color-border);
-    border-radius: 0 !important;
+    border-radius: 0;
     box-sizing: border-box;
   }
 
