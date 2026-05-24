@@ -10,6 +10,6 @@
   // Non-secret runtime vars — visible to the Worker at runtime via process.env.*
   // NEVER put secret keys here (use `wrangler secret put` instead)
   "vars": {
-    "SUPABASE_URL": "https://zagxrihkwmhdzyjdcwek.supabase.co"
+    "SUPABASE_URL": "https://knqcgebewtbbwejmmmbg.supabase.co"
   }
 }
