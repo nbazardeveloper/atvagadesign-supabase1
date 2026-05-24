@@ -10,6 +10,11 @@ const NAV_LINKS = [
   { to: "/contact", label: "Contact" },
 ] as const;
 
+const MOBILE_CALL_LINK = {
+  href: "tel:+18324549303",
+  label: "Call",
+} as const;
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -102,12 +107,12 @@ export function Header() {
 
         {/* Mobile: CTA + burger */}
         <div className="flex items-center gap-3 md:hidden">
-          <Link
-            to="/contact"
+          <a
+            href={MOBILE_CALL_LINK.href}
             className="cta-brand-light-hover px-3 py-2 text-[0.55rem]"
           >
-            Quote
-          </Link>
+            {MOBILE_CALL_LINK.label}
+          </a>
           <button
             className={[
               "flex flex-col items-end justify-center gap-[5px]",

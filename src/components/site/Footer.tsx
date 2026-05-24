@@ -14,6 +14,10 @@ const FOOTER_LINKS = {
     { label: "FAQ", to: "/faq" },
     { label: "Contact", to: "/contact" },
   ],
+  Legal: [
+    { label: "Privacy Policy", to: "/privacy" },
+    { label: "Terms of Use", to: "/terms" },
+  ],
 };
 
 export function Footer() {
@@ -51,7 +55,7 @@ export function Footer() {
       {/* Info section */}
       <div className="w-full bg-[var(--warm)] text-brand-black">
         <div className="section-wrap py-20 lg:py-24">
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1.15fr] lg:gap-16">
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-[1.35fr_1fr_1fr_1fr_1.15fr] lg:gap-16">
             {/* Brand column */}
             <div>
               <img
