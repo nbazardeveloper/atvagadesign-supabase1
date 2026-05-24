@@ -3,6 +3,13 @@ import { FadeIn } from "@/components/site/FadeIn";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Phone, Instagram, Mail, MapPin, Linkedin, Facebook } from "lucide-react";
 import { buildSeoMeta } from "@/lib/seo";
+import {
+  SITE_EMAIL,
+  SITE_EMAIL_HREF,
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_HREF,
+  SITE_PHONE_WHATSAPP,
+} from "@/lib/contact-info";
 
 export const Route = createFileRoute("/contacts")({
   component: Contacts,
@@ -29,11 +36,11 @@ function Contacts() {
         <div className="lg:col-span-5 space-y-10">
           <FadeIn>
             <div className="grid gap-4">
-              <a href="tel:+18324549303" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
-                <span className="flex items-center gap-4"><Phone className="w-4 h-4" /><span className="text-sm">+1 (832) 454-9303</span></span>
+              <a href={SITE_PHONE_HREF} className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Phone className="w-4 h-4" /><span className="text-sm">{SITE_PHONE_DISPLAY}</span></span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Call</span>
               </a>
-              <a href="https://wa.me/18324549303" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+              <a href={SITE_PHONE_WHATSAPP} className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
                 <span className="flex items-center gap-4">
                   <svg viewBox="0 0 24 24" className="w-4 h-4" fill="currentColor"><path d="M17.6 6.3A7.84 7.84 0 0 0 12 4a7.9 7.9 0 0 0-6.7 12L4 20l4.1-1.3a7.9 7.9 0 0 0 3.9 1h0a7.9 7.9 0 0 0 7.9-7.9 7.8 7.8 0 0 0-2.3-5.5Z"/></svg>
                   <span className="text-sm">WhatsApp</span>
@@ -44,8 +51,8 @@ function Contacts() {
                 <span className="flex items-center gap-4"><Instagram className="w-4 h-4" /><span className="text-sm">@atvaga_llc</span></span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Follow</span>
               </a>
-              <a href="mailto:rihanna@atvaga.com" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
-                <span className="flex items-center gap-4"><Mail className="w-4 h-4" /><span className="text-sm">rihanna@atvaga.com</span></span>
+              <a href={SITE_EMAIL_HREF} className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">
+                <span className="flex items-center gap-4"><Mail className="w-4 h-4" /><span className="text-sm">{SITE_EMAIL}</span></span>
                 <span className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground group-hover:text-foreground">Email</span>
               </a>
               <a href="https://www.facebook.com/profile.php?id=100054484958846" target="_blank" rel="noreferrer" className="group flex items-center justify-between border border-border p-6 hover:border-foreground transition">

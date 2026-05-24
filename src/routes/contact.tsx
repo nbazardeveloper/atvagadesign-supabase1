@@ -3,6 +3,7 @@ import { PageHero } from "@/components/site/PageHero";
 import { LeadForm } from "@/components/site/LeadForm";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { buildSeoMeta } from "@/lib/seo";
+import { SITE_EMAIL, SITE_EMAIL_HREF, SITE_PHONE_DISPLAY, SITE_PHONE_HREF } from "@/lib/contact-info";
 
 export const Route = createFileRoute("/contact")({
   component: Contact,
@@ -20,15 +21,15 @@ const CONTACT_ITEMS = [
   {
     icon: <Phone className="w-4 h-4" />,
     label: "Phone",
-    value: "+1 (206) 555-0100",
-    href: "tel:+12065550100",
+    value: SITE_PHONE_DISPLAY,
+    href: SITE_PHONE_HREF,
     action: "Call",
   },
   {
     icon: <Mail className="w-4 h-4" />,
     label: "Email",
-    value: "hello@atvagadesigns.com",
-    href: "mailto:hello@atvagadesigns.com",
+    value: SITE_EMAIL,
+    href: SITE_EMAIL_HREF,
     action: "Email",
   },
   {

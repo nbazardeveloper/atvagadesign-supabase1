@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
+import { SITE_PHONE_HREF } from "@/lib/contact-info";
 
 const NAV_LINKS = [
   { to: "/about", label: "About Us" },
@@ -11,7 +12,7 @@ const NAV_LINKS = [
 ] as const;
 
 const MOBILE_CALL_LINK = {
-  href: "tel:+18324549303",
+  href: SITE_PHONE_HREF,
   label: "Call",
 } as const;
 

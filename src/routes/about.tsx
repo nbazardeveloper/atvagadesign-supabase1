@@ -94,7 +94,8 @@ function About() {
             <p className="mt-8 text-[1rem] leading-8 text-[#5f5f5f] md:text-[1.05rem]">
               ATVAGA Designs creates modern, functional, and permit-ready residential designs tailored to
               each client's vision and budget. We work with homeowners, real estate investors, developers,
-              and general contractors throughout Washington State and beyond.
+              and general contractors throughout Washington State and Southern California, with projects
+              completed across both regions.
             </p>
           </FadeIn>
         </div>

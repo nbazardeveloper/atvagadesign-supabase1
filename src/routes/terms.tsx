@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FadeIn } from "@/components/site/FadeIn";
+import { SITE_EMAIL } from "@/lib/contact-info";
 
 export const Route = createFileRoute("/terms")({
   component: Terms,
@@ -15,10 +16,10 @@ export const Route = createFileRoute("/terms")({
   }),
 });
 
-const EFFECTIVE_DATE = "June 1, 2026";
+const EFFECTIVE_DATE = "May 24, 2026";
 const COMPANY = "ATVAGA Designs";
 const STATE = "Washington";
-const EMAIL = "rihanna@atvaga.com";
+const EMAIL = SITE_EMAIL;
 
 const sections = [
   {

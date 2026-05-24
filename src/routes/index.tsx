@@ -74,6 +74,8 @@ const PROCESS_STEPS = [
   },
 ];
 
+const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=atvaga&rlz=1C1JQPG_enUS1210US1213&oq=at&gs_lcrp=EgZjaHJvbWUqBggAEEUYOzIGCAAQRRg7MgYIARBFGDkyEAgCEC4YxwEYsQMY0QMYgAQyDQgDEAAYgwEYsQMYgAQyEAgEEC4YxwEYsQMY0QMYgAQyCggFEAAYsQMYgAQyEAgGEC4YxwEYsQMY0QMYgAQyDQgHEAAYgwEYsQMYgAQyDQgIEC4YgwEYsQMYgATSAQkyNzAyajBqMTWoAgiwAgHxBQkgRBoo7qhG&sourceid=chrome&ie=UTF-8#lrd=0x54900747738a3831:0xfa3d7b07626d4ab2,1,,,,";
+
 const PORTFOLIO_PROJECTS = [
   {
     title: "Maple Valley ADU",
@@ -148,28 +150,28 @@ const CITIES = [
 
 const TESTIMONIALS = [
   {
-    quote: "The permit process seemed impossible until we met the ATVAGA team. They handled everything with the city of Seattle and our ADU is now under construction!",
-    author: "James D.",
-    location: "Homeowner, Seattle",
-    initials: "JD",
+    quote: "Have hired them a few times to do my permit documents and never fail to show me they are rockstars! 1000% recommended for permit drawings and anything that has to do with professional quality renderings and animations. I can't thank them enough!",
+    author: "Gabriel Vargas",
+    location: "Verified Google Review",
+    initials: "GV",
   },
   {
-    quote: "Modern aesthetics combined with deep technical knowledge. Their drawings were clean, professional, and approved with a single correction.",
-    author: "Sarah L.",
-    location: "Investor, Bellevue",
-    initials: "SL",
+    quote: "Working with Atvaga on my project has been absolutely amazing. They offer outstanding service, deliver high quality work, and are readily available to answer questions and address feedback. Would recommend 10/10.",
+    author: "Jaime E. Garcia",
+    location: "Verified Google Review",
+    initials: "JG",
   },
   {
-    quote: "Highly recommend for anyone doing a major remodel. They listened to our needs and created a plan that was both stunning and practical.",
-    author: "Mark K.",
-    location: "General Contractor",
-    initials: "MK",
+    quote: "I hired Atvaga to do my permits for a flip home and I was super impressed with the quality of work. The team did the plans and submitted for permit within two weeks. This is my go-to architect now.",
+    author: "Andrey K.",
+    location: "Verified Google Review",
+    initials: "AK",
   },
   {
-    quote: "ATVAGA brought clarity to every step of the process. Their permit set was incredibly organized and made coordination with consultants much easier.",
-    author: "Elena P.",
-    location: "Property Owner, Kirkland",
-    initials: "EP",
+    quote: "Responsive, courteous and qualified design team — they pay great attention to details. Highly recommended.",
+    author: "Hazim Alwaali",
+    location: "Verified Google Review",
+    initials: "HA",
   },
 ];
 
@@ -386,8 +388,15 @@ function Home() {
                 <div className="flex items-center gap-4 text-brand-pink">
                   <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★★</span>
                   <div className="flex flex-col">
-                    <span className="text-[1.05rem] font-semibold leading-none text-brand-black">4.9 / 5.0</span>
-                    <span className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray">Google Reviews</span>
+                    <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Google Reviews</span>
+                    <a
+                      href={GOOGLE_REVIEWS_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
+                    >
+                      See Current Rating
+                    </a>
                   </div>
                 </div>
               </div>
@@ -450,7 +459,7 @@ function Home() {
             <div className="flex flex-col">
               <span className="eyebrow">ADU &amp; DADU</span>
               <h2 className="section-title">
-                <span className="block">Modern ADU/DADU Design &amp;</span>
+                <span className="block">Modern ADU/DADU Design &amp; Permit</span>
                 <span className="block">Permit Solutions</span>
               </h2>
               <p className="mt-6 text-sm leading-relaxed text-brand-gray">

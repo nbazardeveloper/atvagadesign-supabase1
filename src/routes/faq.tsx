@@ -88,7 +88,12 @@ function Faq() {
               <h2 className="mb-6 text-[0.72rem] font-semibold uppercase tracking-[0.25em] text-brand-pink">
                 {category}
               </h2>
-              <Accordion type="single" collapsible className="w-full">
+              <Accordion
+                type="single"
+                collapsible
+                defaultValue={`${category}-0`}
+                className="w-full"
+              >
                 {faqs.map((f, i) => (
                   <AccordionItem key={i} value={`${category}-${i}`} className="border-b border-border">
                     <AccordionTrigger className="py-7 text-left font-italiana text-xl transition-colors hover:no-underline hover-text-brand-pink md:text-2xl text-brand-black">

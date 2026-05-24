@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { FadeIn } from "@/components/site/FadeIn";
+import { SITE_EMAIL } from "@/lib/contact-info";
 
 export const Route = createFileRoute("/privacy")({
   component: Privacy,
@@ -15,14 +16,14 @@ export const Route = createFileRoute("/privacy")({
   }),
 });
 
-const EFFECTIVE_DATE = "June 1, 2026";
+const EFFECTIVE_DATE = "May 24, 2026";
 const COMPANY = "ATVAGA Designs";
-const EMAIL = "rihanna@atvaga.com";
+const EMAIL = SITE_EMAIL;
 
 const sections = [
   {
     title: "Who We Are",
-    body: `${COMPANY} is a residential design firm based in Seattle, Washington. This Privacy Policy explains how we collect, use, disclose and safeguard your personal information when you visit atvaga.com or submit an inquiry through our website.`,
+    body: `${COMPANY} is a residential design studio based in Seattle, Washington. This Privacy Policy explains how we collect, use, disclose and safeguard your personal information when you visit atvaga.com or submit an inquiry through our website.`,
   },
   {
     title: "Information We Collect",
