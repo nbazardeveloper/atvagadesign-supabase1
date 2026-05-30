@@ -10,11 +10,11 @@ export const Route = createFileRoute("/quote")({
   component: Quote,
   head: () =>
     buildSeoMeta({
-      title: "Request a Quote — Residential Design & Permit Plans | ATVAGA Designs",
+      title: "Request a Quote — Residential Design & Permit Plans | ATVAGA Design",
       description:
-        "Get a tailored estimate for your residential design, ADU/DADU, permit plans, or remodel project. Every quote is prepared individually by ATVAGA Designs.",
+        "Get a tailored estimate for your residential design, ADU/DADU, permit plans, or remodel project. Every quote is prepared individually by ATVAGA Design.",
       path: "/quote",
-      imageAlt: "Request a quote from ATVAGA Designs",
+      imageAlt: "Request a quote from ATVAGA Design",
     }),
 });
 
@@ -226,7 +226,7 @@ function Quote() {
         <div className="inline-flex h-16 w-16 items-center justify-center border border-brand-black">
           <Check className="w-6 h-6" />
         </div>
-        <h1 className="mt-8 font-italiana text-5xl text-brand-black">Thank You.</h1>
+        <h1 className="mt-8 font-heading text-5xl text-brand-black">Thank You.</h1>
         <p className="mt-4 text-brand-gray">
           Your request has been received. We'll respond within 24 hours to schedule a consultation.
         </p>
@@ -238,7 +238,7 @@ function Quote() {
     <>
       <section className="section-wrap pt-28 pb-12">
         <span className="eyebrow">Step {step + 1} of {steps.length}</span>
-        <h1 className="mt-6 font-italiana text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1] text-brand-black">
+        <h1 className="mt-6 font-heading text-[clamp(2.2rem,5.5vw,4.5rem)] leading-[1] text-brand-black">
           Request Your Estimate.
         </h1>
         <div className="mt-8 flex gap-2">

@@ -1,4 +1,4 @@
-const SITE_NAME = "ATVAGA Designs";
+const SITE_NAME = "ATVAGA Design";
 const SITE_URL = "https://www.atvaga.com";
 const DEFAULT_IMAGE_PATH = "/images/hero/hero.webp";
 const DEFAULT_IMAGE_WIDTH = "1200";

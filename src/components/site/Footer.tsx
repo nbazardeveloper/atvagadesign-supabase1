@@ -63,7 +63,7 @@ export function Footer() {
           <div className="flex flex-col items-center text-center">
             <div className="max-w-3xl">
               <h2 className="text-white">READY TO START?</h2>
-              <p className="mt-5 max-w-2xl text-[1.05rem] leading-[1.65] text-white/70">
+              <p className="mt-5 max-w-2xl text-[0.9375rem] leading-[1.65] text-white/70">
                 Transform your residential goals into detailed, permit-ready
                 design drawings. Let&apos;s discuss your project today.
               </p>
@@ -94,10 +94,10 @@ export function Footer() {
             <div>
               <img
                 src="/images/logo-black.webp"
-                alt="ATVAGA Designs"
+                alt="ATVAGA Design"
                 className="block h-14 w-auto sm:h-16"
               />
-              <p className="mt-6 max-w-[16rem] text-[1rem] leading-[1.75] text-brand-gray">
+              <p className="mt-6 max-w-[16rem] text-[0.9375rem] leading-[1.75] text-brand-gray">
                 Technical precision meets refined residential design. Specializing in
                 permit-ready drafting for Washington State.
               </p>
@@ -114,7 +114,7 @@ export function Footer() {
                     <li key={label}>
                       <Link
                         to={to}
-                        className="text-[1rem] text-brand-gray underline-offset-4 transition-colors hover-text-brand-black hover:underline"
+                        className="text-[0.9375rem] text-brand-gray underline-offset-4 transition-colors hover-text-brand-black hover:underline"
                       >
                         {label}
                       </Link>
@@ -129,7 +129,7 @@ export function Footer() {
               <h3 className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">
                 Office
               </h3>
-              <div className="mt-5 space-y-1 text-[1rem] leading-[1.75] text-brand-gray">
+              <div className="mt-5 space-y-1 text-[0.9375rem] leading-[1.75] text-brand-gray">
                 <p>Mon – Fri: 9am – 5pm</p>
                 <p>Seattle, Washington</p>
               </div>
@@ -154,7 +154,7 @@ export function Footer() {
         {/* Copyright bar */}
         <div className="section-wrap border-t border-brand-black/8 py-6">
           <p className="text-[0.72rem] uppercase tracking-[0.16em] text-brand-gray">
-            © {new Date().getFullYear()} ATVAGA Designs. Design Drawings &amp; Permit Services in Washington State.
+            © {new Date().getFullYear()} ATVAGA Design. Design Drawings &amp; Permit Services in Washington State.
           </p>
         </div>
       </div>

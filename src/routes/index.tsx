@@ -8,13 +8,13 @@ export const Route = createFileRoute("/")({
   component: Home,
   head: () =>
     buildSeoMeta({
-      title: "ATVAGA Designs | ADU & Residential Design Services in Washington State",
+      title: "ATVAGA Design | ADU & Residential Design Services in Washington State",
       description:
         "Modern residential design, ADU plans, permit-ready drawings and home additions in Seattle, Bellevue, Kirkland, Tacoma and surrounding areas. Fast turnaround. City permit submittals.",
       keywords:
         "ADU design Washington, permit plans Seattle, permit plans Bellevue, home addition design, residential remodel design, ADU permit Seattle",
       path: "/",
-      imageAlt: "ATVAGA Designs residential project",
+      imageAlt: "ATVAGA Design residential project",
     }),
 });
 
@@ -78,21 +78,21 @@ const GOOGLE_REVIEWS_URL = "https://www.google.com/search?q=atvaga&rlz=1C1JQPG_e
 
 const PORTFOLIO_PROJECTS = [
   {
-    title: "Maple Valley ADU",
-    type: "Detached ADU",
-    city: "Maple Valley, WA",
+    title: "Residential Projects",
+    type: "residential",
+    city: "Washington State",
     src: "/images/projects/detachedadu.webp",
   },
   {
-    title: "Bellevue Modern Addition",
-    type: "Home Addition",
-    city: "Bellevue, WA",
+    title: "Commercial Projects",
+    type: "commercial",
+    city: "Washington State",
     src: "/images/projects/homeedition.webp",
   },
   {
-    title: "Capitol Hill Remodel",
-    type: "Full Remodel",
-    city: "Seattle, WA",
+    title: "Permit Plans",
+    type: "Permit Plans",
+    city: "Washington State",
     src: "/images/projects/fullremodel.webp",
   },
 ];
@@ -125,25 +125,25 @@ const CITIES = [
   {
     name: "Bothell",
     badge: "North King / Snohomish",
-    src: "/images/projects/residential/Summit_at_Canyon_Park,_Bothell,_WA_view_1.webp",
+    src: "/images/serving-state/bothell.webp",
     description: "Residential design support for Bothell neighborhoods, townhome communities, and growing suburban developments.",
   },
   {
     name: "Edmonds",
     badge: "Snohomish County",
-    src: "/images/projects/residential/Town_Squire_Condominiums,__Edmonds,_WA_(1).webp",
+    src: "/images/serving-state/edmonds.webp",
     description: "Coastal residential design drawings and permit planning for Edmonds homes and condominium properties.",
   },
   {
     name: "Mukilteo",
     badge: "Puget Sound",
-    src: "/images/projects/residential/Losvar_Condos_Mukilteo,_WA.webp",
+    src: "/images/serving-state/mukilteo.webp",
     description: "Permit-ready residential design support for Mukilteo waterfront homes, condos, and renovation projects.",
   },
   {
     name: "Sammamish",
     badge: "Eastside",
-    src: "/images/projects/residential/Sammamish_WA.webp",
+    src: "/images/serving-state/sammamish.webp",
     description: "Custom residential design drawings for Sammamish homes, additions, and carefully detailed remodels.",
   },
 ];
@@ -208,17 +208,19 @@ function Home() {
         />
         <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,7,7,0.22)_0%,rgba(7,7,7,0.08)_28%,rgba(7,7,7,0.24)_60%,rgba(7,7,7,0.68)_100%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_28%,rgba(255,177,114,0.42),transparent_34%),radial-gradient(circle_at_78%_78%,rgba(10,10,10,0.2),transparent_32%)]" />
+        {/* Text legibility gradient — left half only, fades right */}
+        <div className="absolute inset-y-0 left-0 w-1/2 bg-[linear-gradient(to_right,rgba(7,7,7,0.55)_0%,transparent_100%)]" />
 
-        <div className="relative z-10 flex min-h-[100svh] w-full flex-col justify-end px-5 pb-12 pt-24 md:px-8 md:pb-16 lg:px-10 xl:px-12">
-          <p className="max-w-3xl text-xl font-light leading-tight text-white md:text-[1.9rem] lg:text-[2.2rem]">
+        <div className="relative z-10 flex min-h-[100svh] w-full flex-col items-start justify-end px-5 pt-24 pb-16 md:px-8 md:pb-20 lg:px-10 xl:px-12">
+          <h1 className="w-full font-heading text-[10vw] font-light leading-[0.9] tracking-[-0.035em] text-white sm:text-[8vw] md:text-[5.5vw] lg:text-[5vw] xl:text-[4.6vw]">
+            <span className="block">PERMIT READY</span>
+            <span className="block">DESIGN &amp; DRAFTING</span>
+          </h1>
+          <p className="mt-8 max-w-xl text-lg font-light leading-relaxed text-white/80 md:text-[1.25rem]">
             We turn your ideas into accurate, permit-ready construction drawings.
             Stress-free design services for homeowners, contractors, and real estate agents across Washington State.
           </p>
-          <h1 className="mt-8 -mb-[0.08em] w-full font-italiana text-[20vw] font-light leading-[0.88] tracking-[-0.035em] text-white sm:text-[16.5vw] md:text-[15.1vw] md:leading-[0.9] lg:text-[14.2vw] xl:text-[13.6vw]">
-            <span className="block md:inline">ATVAGA</span>{" "}
-            <span className="block md:inline">DESIGN</span>
-          </h1>
-          <div className="mt-10 flex flex-col gap-4 pb-4 sm:flex-row">
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link to="/contact" className="cta-brand px-8">
               Start Your Project
             </Link>
@@ -230,7 +232,7 @@ function Home() {
       </section>
 
       {/* ── SERVICES CAROUSEL ───────────────────────────── */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-[#f0ece6] py-24 lg:py-32">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="section-intro flex items-end justify-between gap-6">
             <div>
@@ -265,9 +267,9 @@ function Home() {
               <Link
                 key={title}
                 to="/services"
-                className="group relative block w-[14.5rem] shrink-0 snap-start overflow-hidden bg-white sm:w-[15.5rem] lg:w-[16.75rem]"
+                className="group relative block w-[14.5rem] shrink-0 snap-start overflow-hidden bg-[#f0ece6] sm:w-[15.5rem] lg:w-[16.75rem]"
               >
-                <div className="bg-white px-4 pt-4">
+                <div className="bg-[#f0ece6] px-4 pt-4">
                   <div className="relative aspect-[0.8/1] overflow-hidden rounded-t-[50%] bg-brand-light">
                     <img
                       src={src}
@@ -278,7 +280,7 @@ function Home() {
                     <div className="absolute inset-0 bg-brand-black-20 transition-colors group-hover:bg-brand-black-10" />
                   </div>
                 </div>
-                <div className="flex min-h-[4.75rem] items-center bg-white px-4 py-4">
+                <div className="flex min-h-[4.75rem] items-center bg-[#f0ece6] px-4 py-4">
                   <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</p>
                 </div>
               </Link>
@@ -346,7 +348,7 @@ function Home() {
                       Permit Ready
                     </h2>
                     <p className="mt-6 text-[0.875rem] leading-relaxed text-white/70">
-                      ATVAGA Designs provides expert design drawings and permit plans for homeowners and
+                      ATVAGA Design provides expert design drawings and permit plans for homeowners and
                       developers across Seattle, Bellevue, and beyond. From initial concept to final city
                       permit approval, we transform your vision into aesthetic, code-compliant residential solutions.
                     </p>
@@ -355,7 +357,7 @@ function Home() {
               </div>
             </div>
             {/* CTA strip */}
-            <div className="bg-brand-light px-5 py-6 md:px-0 md:py-0 md:h-[80px]">
+            <div className="bg-[#f0ece6] px-5 py-6 md:px-0 md:py-0 md:h-[80px]">
               <div className="grid h-full w-full grid-cols-1 md:grid-cols-2">
                 <div className="hidden md:block" />
                 <div className="flex h-full items-center md:pr-10">
@@ -371,32 +373,50 @@ function Home() {
       </section>
 
       {/* ── WHY CHOOSE ATVAGA ───────────────────────────── */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-[#f0ece6] py-24 lg:py-32">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="grid grid-cols-1 gap-10 lg:grid-cols-[1.03fr_1.45fr] lg:gap-8">
             <div className="flex flex-col justify-between gap-10 lg:min-h-[23.5rem]">
               <div className="max-w-[32rem]">
                 <span className="eyebrow">Why Us</span>
                 <h2 className="section-title">Why Choose ATVAGA</h2>
-                <p className="mt-6 max-w-[31rem] text-[1.05rem] leading-[1.65] tracking-[0.01em] text-brand-gray">
+                <p className="mt-6 max-w-[31rem] text-[0.9375rem] leading-[1.65] text-brand-gray">
                   We specialize in the complex intersection of high-end design aesthetics and municipal building
                   codes. Our team ensures your vision isn't just beautiful — it's buildable.
                 </p>
               </div>
-              {/* Rating badge */}
-              <div className="flex min-h-[5.9rem] items-center border border-[#ebe7e3] bg-[#f8f5f2] px-8 py-6 lg:max-w-[32rem]">
-                <div className="flex items-center gap-4 text-brand-pink">
-                  <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★★</span>
-                  <div className="flex flex-col">
-                    <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Google Reviews</span>
-                    <a
-                      href={GOOGLE_REVIEWS_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
-                    >
-                      See Current Rating
-                    </a>
+              {/* Rating badges */}
+              <div className="flex flex-col gap-3 lg:max-w-[32rem]">
+                <div className="flex min-h-[5.9rem] items-center border border-[#ebe7e3] bg-[#f8f5f2] px-8 py-6">
+                  <div className="flex items-center gap-4 text-brand-pink">
+                    <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★★</span>
+                    <div className="flex flex-col">
+                      <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Google Reviews</span>
+                      <a
+                        href={GOOGLE_REVIEWS_URL}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
+                      >
+                        See Current Rating
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex min-h-[5.9rem] items-center border border-[#ebe7e3] bg-[#f8f5f2] px-8 py-6">
+                  <div className="flex items-center gap-4 text-brand-pink">
+                    <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★</span>
+                    <div className="flex flex-col">
+                      <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Thumbtack</span>
+                      <a
+                        href="https://www.thumbtack.com/wa/edmonds/architects/atvaga-design-llc-building-permit-drawings/service/421109884370501643?utm_medium=web&utm_source=txt&surface=sp&referrer_pk=421109884215058443"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
+                      >
+                        See Our Profile
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -406,10 +426,10 @@ function Home() {
               {WHY_CHOOSE.map(({ title, body }) => (
                 <article
                   key={title}
-                  className="min-h-[10.6rem] border border-[#ebe7e3] bg-white px-7 py-7 lg:px-8"
+                  className="min-h-[10.6rem] border border-[#ebe7e3] bg-[#f0ece6] px-7 py-7 lg:px-8"
                 >
                   <h3 className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</h3>
-                  <p className="mt-4 max-w-[22rem] text-[1rem] leading-[1.65] tracking-[0.01em] text-brand-gray">{body}</p>
+                  <p className="mt-4 max-w-[22rem] text-[0.9375rem] leading-[1.65] text-brand-gray">{body}</p>
                 </article>
               ))}
             </div>
@@ -427,9 +447,9 @@ function Home() {
           <div className="grid grid-cols-1 gap-px bg-[#dedad7] sm:grid-cols-2 lg:grid-cols-4">
             {PROCESS_STEPS.map(({ number, title, body }) => (
               <div key={number} className="flex flex-col bg-brand-light px-8 py-10">
-                <span className="font-italiana text-[4rem] leading-none text-brand-pink/25">{number}</span>
+                <span className="font-heading text-[4rem] leading-none text-brand-pink/25">{number}</span>
                 <h3 className="mt-6 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brand-black">{title}</h3>
-                <p className="mt-4 text-[0.875rem] leading-relaxed text-brand-gray">{body}</p>
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-brand-gray">{body}</p>
               </div>
             ))}
           </div>
@@ -437,7 +457,7 @@ function Home() {
       </section>
 
       {/* ── ADU / DADU FEATURE ──────────────────────────── */}
-      <section className="w-full overflow-hidden bg-white py-24 lg:py-40">
+      <section className="w-full overflow-hidden bg-[#f0ece6] py-24 lg:py-40">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="grid grid-cols-1 items-center gap-16 lg:grid-cols-2 lg:gap-24">
             {/* Image + stat badge */}
@@ -445,13 +465,13 @@ function Home() {
               <div className="relative aspect-[15/16] overflow-hidden">
                 <img
                   src="/images/services/daduesign-card.jpg"
-                  alt="ADU interior project by ATVAGA Designs"
+                  alt="ADU interior project by ATVAGA Design"
                   className="h-full w-full object-cover object-center"
                   loading="lazy"
                 />
               </div>
               <div className="absolute bottom-0 right-0 z-10 translate-x-[22%] translate-y-[28%] bg-brand-pink px-[4.875rem] py-9">
-                <p className="font-italiana text-[4.5rem] leading-none text-white">150+</p>
+                <p className="font-heading text-[4.5rem] leading-none text-white">150+</p>
                 <p className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-white/90">Projects Completed</p>
               </div>
             </div>
@@ -459,17 +479,18 @@ function Home() {
             <div className="flex flex-col">
               <span className="eyebrow">ADU &amp; DADU</span>
               <h2 className="section-title">
-                <span className="block">Modern ADU/DADU Design &amp; Permit</span>
-                <span className="block">Permit Solutions</span>
+                <span className="block">Modern ADU & DADU Design</span>
+                <span className="block">Complete Drafting & Permit Solutions</span>
               </h2>
-              <p className="mt-6 text-sm leading-relaxed text-brand-gray">
-                ATVAGA Designs specializes in detached and attached ADU solutions throughout Washington State.
+              <p className="mt-6 text-[0.9375rem] leading-relaxed text-brand-gray">
+                ATVAGA Design specializes in detached and attached ADU solutions throughout Washington State.
                 We handle the entire lifecycle of your project — from site analysis and design drafting to
                 engineering coordination and city submittals.
               </p>
               <div className="mt-10">
                 <Link
                   to="/portfolio"
+                  search={{ category: "ADU/DADU" }}
                   className="cta-link"
                 >
                   View ADU Projects →
@@ -497,7 +518,7 @@ function Home() {
           </div>
           <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
             {PORTFOLIO_PROJECTS.map(({ title, type, city, src }) => (
-              <Link key={title} to="/portfolio" className="group block">
+              <Link key={title} to="/portfolio" search={{ category: type }} className="group block">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <img
                     src={src}
@@ -511,7 +532,7 @@ function Home() {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <h3 className="font-italiana text-[1.45rem] leading-snug text-white transition-colors group-hover:text-brand-pink">{title}</h3>
+                  <h3 className="font-heading text-[1.45rem] leading-snug text-white transition-colors group-hover:text-brand-pink">{title}</h3>
                   <p className="mt-1 text-[0.72rem] uppercase tracking-widest text-brand-gray">{city}</p>
                 </div>
               </Link>
@@ -529,7 +550,7 @@ function Home() {
       </section>
 
       {/* ── SERVING WASHINGTON STATE ─────────────────────── */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-[#f0ece6] py-24 lg:py-32">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="section-intro">
             <span className="eyebrow">Service Area</span>
@@ -548,10 +569,10 @@ function Home() {
                 </div>
                 <div className="px-5 py-5">
                   <div className="flex items-start justify-between gap-2">
-                    <h3 className="font-italiana text-[1.5rem] text-brand-black">{name}</h3>
+                    <h3 className="font-heading text-[1.5rem] text-brand-black">{name}</h3>
                     <span className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-brand-pink">{badge}</span>
                   </div>
-                  <p className="mt-3 text-[0.8rem] leading-relaxed text-brand-gray">{description}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-brand-gray">{description}</p>
                 </div>
               </article>
             ))}
@@ -570,10 +591,10 @@ function Home() {
             {TESTIMONIALS.map(({ quote, author, location, initials }) => (
               <blockquote
                 key={author}
-                className="flex min-h-[14rem] flex-col border border-[#dedad7] bg-white px-5 py-5 lg:px-6"
+                className="flex min-h-[14rem] flex-col border border-[#dedad7] bg-[#f0ece6] px-5 py-5 lg:px-6"
               >
                 <div className="mb-5 text-[0.9rem] leading-none tracking-[0.18em] text-brand-pink">★★★★★</div>
-                <p className="flex-1 font-italiana text-[1.05rem] leading-[1.65] text-brand-black-78">"{quote}"</p>
+                <p className="flex-1 text-[0.9375rem] leading-[1.65] text-brand-black-78">"{quote}"</p>
                 <footer className="mt-6 flex items-center gap-3 border-t border-brand-light pt-4">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#f1e8eb] text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-brand-pink">
                     {initials}

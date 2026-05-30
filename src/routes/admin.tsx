@@ -13,6 +13,7 @@ import {
   LogOut,
   Plus,
   Trash2,
+  Upload,
 } from "lucide-react";
 import {
   AlertDialog,
@@ -33,7 +34,7 @@ type TeamMemberUpdate = TablesUpdate<"team_members">;
 
 export const Route = createFileRoute("/admin")({
   component: Admin,
-  head: () => ({ meta: [{ title: "Admin CMS — ATVAGA Designs" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Admin CMS — ATVAGA Design" }, { name: "robots", content: "noindex" }] }),
 });
 
 function Admin() {
@@ -49,7 +50,7 @@ function Admin() {
   if (!user) return null;
   if (!isAdmin) return (
     <Centered>
-      <p className="font-display text-2xl">Awaiting admin access</p>
+      <p className="font-heading text-2xl">Awaiting admin access</p>
       <p className="mt-2 text-sm text-muted-foreground max-w-sm text-center">Your account is signed in but does not yet have admin privileges. Contact the studio owner to grant access.</p>
       <button onClick={() => supabase.auth.signOut()} className="mt-6 text-[10px] uppercase tracking-[0.3em] link-underline">Sign out</button>
     </Centered>
@@ -60,7 +61,7 @@ function Admin() {
       <header className="bg-background border-b border-border">
         <div className="container-luxe flex items-center justify-between h-16">
           <Link to="/" className="flex items-baseline gap-2">
-            <span className="font-italiana text-xl">ATVAGA</span>
+            <span className="font-heading text-xl">ATVAGA</span>
             <span className="text-[9px] uppercase tracking-[0.3em] text-muted-foreground">CMS</span>
           </Link>
           <div className="flex items-center gap-6">
@@ -116,7 +117,7 @@ function LeadsPanel() {
 
   return (
     <div>
-      <h2 className="font-display text-3xl mb-6">Leads <span className="text-muted-foreground text-base">· {leads.length}</span></h2>
+      <h2 className="font-heading text-3xl mb-6">Leads <span className="text-muted-foreground text-base">· {leads.length}</span></h2>
       {isLoading ? <p className="text-sm text-muted-foreground">Loading…</p> : leads.length === 0 ? (
         <div className="bg-background border border-border p-10 text-center text-muted-foreground text-sm">No leads yet.</div>
       ) : (
@@ -124,7 +125,7 @@ function LeadsPanel() {
           {leads.map(l => (
             <div key={l.id} className="bg-background border border-border p-6 grid md:grid-cols-12 gap-4">
               <div className="md:col-span-3">
-                <p className="font-display text-lg">{l.name}</p>
+                <p className="font-heading text-lg">{l.name}</p>
                 <p className="text-xs text-muted-foreground mt-1">{new Date(l.created_at).toLocaleString()}</p>
                 <p className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-2">{l.source}</p>
               </div>
@@ -163,6 +164,7 @@ function PortfolioPanel() {
 
   const [newTitle, setNewTitle] = useState("");
   const [newCat, setNewCat] = useState("venetian");
+  const [newImageUrl, setNewImageUrl] = useState<string | null>(null);
 
   const add = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -172,10 +174,12 @@ function PortfolioPanel() {
       title: newTitle.trim(),
       slug,
       category: newCat,
+      image_url: newImageUrl,
       display_order: (items[items.length - 1]?.display_order ?? 0) + 1,
     });
     if (error) return toast.error(error.message);
     setNewTitle("");
+    setNewImageUrl(null);
     qc.invalidateQueries({ queryKey: ["portfolio_items_admin"] });
     qc.invalidateQueries({ queryKey: ["portfolio_items"] });
     qc.invalidateQueries({ queryKey: ["portfolio_items_home"] });
@@ -197,10 +201,14 @@ function PortfolioPanel() {
 
   return (
     <div>
-      <h2 className="font-display text-3xl mb-6">Portfolio</h2>
-      <form onSubmit={add} className="bg-background border border-border p-6 flex flex-wrap gap-3 items-end mb-6">
-        <div className="flex-1 min-w-[200px]">
-          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">New technique</label>
+      <h2 className="font-heading text-3xl mb-6">Portfolio</h2>
+      <form onSubmit={add} className="bg-background border border-border p-6 flex flex-wrap gap-4 items-end mb-6">
+        <div>
+          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Image</label>
+          <ImageUpload currentUrl={newImageUrl} onUpload={setNewImageUrl} bucket="project_images" />
+        </div>
+        <div className="flex-1 min-w-[180px]">
+          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Title</label>
           <input value={newTitle} onChange={e => setNewTitle(e.target.value)} placeholder="Title" className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm" />
         </div>
         <div>
@@ -213,16 +221,17 @@ function PortfolioPanel() {
       <div className="space-y-2">
         {items.map(it => (
           <div key={it.id} className="bg-background border border-border p-4 grid md:grid-cols-12 gap-3 items-center">
-            <div className="md:col-span-1 aspect-square placeholder-tile" />
+            <div className="md:col-span-1">
+              <ImageUpload currentUrl={it.image_url} onUpload={(url) => update(it.id, { image_url: url })} bucket="project_images" />
+            </div>
             <input defaultValue={it.title} onBlur={e => e.target.value !== it.title && update(it.id, { title: e.target.value })} className="md:col-span-3 bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm" />
             <input defaultValue={it.category} onBlur={e => e.target.value !== it.category && update(it.id, { category: e.target.value })} className="md:col-span-2 bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm" />
-            <input defaultValue={it.image_url ?? ""} placeholder="Image URL" onBlur={e => update(it.id, { image_url: e.target.value || null })} className="md:col-span-4 bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm" />
+            <div className="md:col-span-4" />
             <input type="number" defaultValue={it.display_order} onBlur={e => update(it.id, { display_order: Number(e.target.value) })} className="md:col-span-1 bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm" />
             <button onClick={() => remove(it.id)} className="md:col-span-1 text-muted-foreground hover:text-destructive justify-self-end"><Trash2 className="w-4 h-4" /></button>
           </div>
         ))}
       </div>
-      <p className="mt-6 text-xs text-muted-foreground">Tip: paste any image URL in the Image URL field. Click outside the field to save.</p>
     </div>
   );
 }
@@ -347,7 +356,7 @@ function TeamPanel() {
     <div>
       <div className="flex items-end justify-between gap-4 mb-6">
         <div>
-          <h2 className="font-display text-3xl">Team</h2>
+          <h2 className="font-heading text-3xl">Team</h2>
           <p className="mt-2 text-sm text-muted-foreground">Manage the team grid shown on the About page.</p>
         </div>
         <p className="text-xs text-muted-foreground uppercase tracking-[0.25em]">{members.length} total</p>
@@ -355,12 +364,11 @@ function TeamPanel() {
 
       <form onSubmit={createMember} className="bg-background border border-border p-6 grid gap-4 mb-8 lg:grid-cols-12">
         <div className="lg:col-span-3">
-          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo URL</label>
-          <textarea
-            value={newMember.photo_url}
-            onChange={(e) => setNewMember((current) => ({ ...current, photo_url: e.target.value }))}
-            className="min-h-[164px] w-full resize-y bg-transparent border border-border px-3 py-3 text-sm outline-none transition-colors focus:border-foreground"
-            placeholder="Paste the public Supabase image URL"
+          <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo</label>
+          <ImageUpload
+            currentUrl={newMember.photo_url || null}
+            onUpload={(url) => setNewMember((current) => ({ ...current, photo_url: url }))}
+            bucket="team"
           />
         </div>
 
@@ -478,12 +486,11 @@ function TeamPanel() {
                     />
                   </div>
                   <div>
-                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo URL</label>
-                    <input
-                      defaultValue={member.photo_url ?? ""}
-                      placeholder="https://...supabase.co/storage/v1/object/public/..."
-                      onBlur={(e) => e.target.value !== (member.photo_url ?? "") && updateMember(member.id, { photo_url: e.target.value.trim() || null }, "Photo updated")}
-                      className="w-full bg-transparent border-b border-border focus:border-foreground py-2 outline-none text-sm"
+                    <label className="block text-[10px] uppercase tracking-[0.25em] text-muted-foreground mb-2">Photo</label>
+                    <ImageUpload
+                      currentUrl={member.photo_url}
+                      onUpload={(url) => updateMember(member.id, { photo_url: url }, "Photo updated")}
+                      bucket="team"
                     />
                   </div>
                   <div>
@@ -540,6 +547,57 @@ function TeamPanel() {
       )}
 
       <p className="mt-6 text-xs text-muted-foreground">Drag a row by the grip icon to change the display order on the About page.</p>
+    </div>
+  );
+}
+
+/* ── Image Upload component ───────────────────────────────────────────── */
+function ImageUpload({
+  currentUrl,
+  onUpload,
+  bucket = "project_images",
+  folder = "",
+}: {
+  currentUrl?: string | null;
+  onUpload: (url: string) => void;
+  bucket?: string;
+  folder?: string;
+}) {
+  const [uploading, setUploading] = useState(false);
+
+  const handleFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    const ext = file.name.split(".").pop() ?? "jpg";
+    const filename = `${Date.now()}.${ext}`;
+    const path = folder ? `${folder}/${filename}` : filename;
+
+    const { error } = await supabase.storage.from(bucket).upload(path, file, { upsert: true });
+    if (error) {
+      toast.error("Upload failed: " + error.message);
+      setUploading(false);
+      return;
+    }
+
+    const { data } = supabase.storage.from(bucket).getPublicUrl(path);
+    onUpload(data.publicUrl);
+    setUploading(false);
+    // reset input so same file can be re-selected
+    e.target.value = "";
+  };
+
+  return (
+    <div className="flex flex-col gap-2">
+      {currentUrl && (
+        <img src={currentUrl} alt="" className="h-20 w-20 object-cover border border-border" />
+      )}
+      <label className={`cursor-pointer inline-flex items-center gap-2 px-4 py-2 border border-border text-[10px] uppercase tracking-[0.25em] transition ${uploading ? "opacity-60 pointer-events-none" : "hover:border-foreground"}`}>
+        <Upload className="w-3 h-3" />
+        {uploading ? "Uploading…" : currentUrl ? "Change" : "Upload image"}
+        <input type="file" accept="image/*" onChange={handleFile} className="hidden" disabled={uploading} />
+      </label>
     </div>
   );
 }

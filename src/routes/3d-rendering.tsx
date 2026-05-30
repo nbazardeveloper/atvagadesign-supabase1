@@ -6,11 +6,11 @@ export const Route = createFileRoute("/3d-rendering")({
   component: ThreeDRendering,
   head: () =>
     buildSeoMeta({
-      title: "3D Rendering Services — Photorealistic Visualization | ATVAGA Designs",
+      title: "3D Rendering Services — Photorealistic Visualization | ATVAGA Design",
       description:
         "Photorealistic 3D renderings and virtual tours for residential projects in Seattle and Washington State. See your design before it's built.",
       path: "/3d-rendering",
-      imageAlt: "3D rendering of residential project by ATVAGA Designs",
+      imageAlt: "3D rendering of residential project by ATVAGA Design",
     }),
 });
 
@@ -93,7 +93,7 @@ function ThreeDRendering() {
       </PageHero>
 
       {/* Offerings grid */}
-      <section className="w-full bg-white py-24 lg:py-32">
+      <section className="w-full bg-[#f0ece6] py-24 lg:py-32">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="section-intro">
             <span className="eyebrow">What's Included</span>
@@ -111,8 +111,8 @@ function ThreeDRendering() {
                   />
                 </div>
                 <div className="px-6 py-6">
-                  <h3 className="font-italiana text-[1.35rem] text-brand-black">{title}</h3>
-                  <p className="mt-3 text-[0.875rem] leading-relaxed text-brand-gray">{description}</p>
+                  <h3 className="font-heading text-[1.35rem] text-brand-black">{title}</h3>
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-brand-gray">{description}</p>
                 </div>
               </article>
             ))}
@@ -130,11 +130,11 @@ function ThreeDRendering() {
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
             {HIGHLIGHTS.map(({ title, body }, i) => (
               <div key={title} className="surface-card flex flex-col px-8 py-8">
-                <span className="font-italiana text-[3rem] leading-none text-brand-pink/20">
+                <span className="font-heading text-[3rem] leading-none text-brand-pink/20">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <h3 className="mt-6 text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</h3>
-                <p className="mt-4 text-[0.875rem] leading-relaxed text-brand-gray">{body}</p>
+                <p className="mt-4 text-[0.9375rem] leading-relaxed text-brand-gray">{body}</p>
               </div>
             ))}
           </div>
@@ -145,7 +145,7 @@ function ThreeDRendering() {
       <section className="w-full bg-brand-black py-24">
         <div className="section-wrap text-center">
           <h2 className="text-white">See Your Project Before It's Built</h2>
-          <p className="mt-6 text-white/60 max-w-xl">
+          <p className="mt-6 max-w-xl mx-auto text-white/60">
             3D rendering is available as a standalone service or as an add-on to any design package.
             Contact us to discuss your visualization needs.
           </p>

@@ -240,6 +240,21 @@ ChartTooltipContent.displayName = "ChartTooltip";
 
 const ChartLegend = RechartsPrimitive.Legend;
 
+function ChartLegendSwatch({ color }: { color?: string }) {
+  const swatchRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!swatchRef.current) return;
+    if (color) {
+      swatchRef.current.style.setProperty("--chart-legend-color", color);
+      return;
+    }
+    swatchRef.current.style.removeProperty("--chart-legend-color");
+  }, [color]);
+
+  return <div ref={swatchRef} className="chart-legend-swatch h-2 w-2 shrink-0 rounded-[2px]" />;
+}
+
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
   React.ComponentProps<"div"> &
@@ -279,12 +294,7 @@ const ChartLegendContent = React.forwardRef<
               {itemConfig?.icon && !hideIcon ? (
                 <itemConfig.icon />
               ) : (
-                <div
-                  className="h-2 w-2 shrink-0 rounded-[2px]"
-                  style={{
-                    backgroundColor: item.color,
-                  }}
-                />
+                <ChartLegendSwatch color={item.color} />
               )}
               {itemConfig?.label}
             </div>

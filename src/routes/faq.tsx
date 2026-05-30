@@ -7,11 +7,11 @@ export const Route = createFileRoute("/faq")({
   component: Faq,
   head: () =>
     buildSeoMeta({
-      title: "FAQ — Permits, ADU Design & Residential Projects | ATVAGA Designs",
+      title: "FAQ — Permits, ADU Design & Residential Projects | ATVAGA Design",
       description:
-        "Common questions about residential permits, ADU/DADU design, city submittals, and the design process in Washington State. Answered by ATVAGA Designs.",
+        "Common questions about residential permits, ADU/DADU design, city submittals, and the design process in Washington State. Answered by ATVAGA Design.",
       path: "/faq",
-      imageAlt: "FAQ about residential design and permits by ATVAGA Designs",
+      imageAlt: "FAQ about residential design and permits by ATVAGA Design",
     }),
 });
 
@@ -96,7 +96,7 @@ function Faq() {
               >
                 {faqs.map((f, i) => (
                   <AccordionItem key={i} value={`${category}-${i}`} className="border-b border-border">
-                    <AccordionTrigger className="py-7 text-left font-italiana text-xl transition-colors hover:no-underline hover-text-brand-pink md:text-2xl text-brand-black">
+                    <AccordionTrigger className="py-7 text-left font-heading text-xl transition-colors hover:no-underline hover-text-brand-pink md:text-2xl text-brand-black">
                       {f.q}
                     </AccordionTrigger>
                     <AccordionContent className="pb-7 text-base leading-relaxed text-brand-gray">
@@ -115,7 +115,7 @@ function Faq() {
         <div className="section-wrap text-center">
           <span className="eyebrow">Still have questions?</span>
           <h2 className="section-title">Let's talk about your project.</h2>
-          <p className="mt-6 max-w-xl text-brand-gray">
+          <p className="mt-6 max-w-xl mx-auto text-brand-gray">
             Every project is unique. Schedule a free 30-minute consultation and we'll answer all your
             questions about design, permitting, and timelines specific to your site.
           </p>

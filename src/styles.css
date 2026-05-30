@@ -44,19 +44,17 @@
   --color-brand-pink: #d4547a;
 
   /* ── Fonts ───────────────────────────────────────── */
-  --font-display: var(--font-italiana);
-  --font-sans: var(--font-manrope), "Plus Jakarta Sans", system-ui, sans-serif;
-  --font-italiana: var(--italiana-font, "Italiana"), serif;
-  --font-manrope: var(--manrope-font, "Manrope"), sans-serif;
+  --font-heading: var(--forum-font, "Forum"), system-ui, serif;
+  --font-body: var(--inter-font, "Inter"), system-ui, sans-serif;
 }
 
 :root {
   --radius: 0px;
-  --background: #ffffff;
+  --background: #f0ece6;
   --foreground: #0a0a0a;
-  --card: #ffffff;
+  --card: #f0ece6;
   --card-foreground: #0a0a0a;
-  --popover: #ffffff;
+  --popover: #f0ece6;
   --popover-foreground: #0a0a0a;
   --primary: #0a0a0a;
   --primary-foreground: #ffffff;
@@ -99,7 +97,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-manrope), "Manrope", system-ui, sans-serif;
+    font-family: var(--font-body);
     font-size: 0.9375rem;
     line-height: 1.8;
     -webkit-font-smoothing: antialiased;
@@ -108,25 +106,25 @@
   }
 
   h1 {
-    font-family: var(--font-italiana), "Italiana", serif;
+    font-family: var(--font-heading);
     line-height: 1.08;
     letter-spacing: 0.01em;
     font-size: clamp(2.75rem, 6vw + 1rem, 6rem);
   }
   h2 {
-    font-family: var(--font-italiana), "Italiana", serif;
+    font-family: var(--font-heading);
     line-height: 1.12;
     letter-spacing: 0.01em;
     font-size: clamp(2rem, 4vw + 0.5rem, 4rem);
   }
   h3 {
-    font-family: var(--font-italiana), "Italiana", serif;
+    font-family: var(--font-heading);
     line-height: 1.2;
     letter-spacing: 0.01em;
     font-size: clamp(1.25rem, 2vw + 0.25rem, 1.75rem);
   }
   h4, h5, h6 {
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-weight: 600;
     letter-spacing: 0.02em;
   }
@@ -135,7 +133,7 @@
 
   button, input, textarea, select {
     border-radius: 0;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
   }
   input:focus, textarea:focus, select:focus { outline: none; }
   fieldset { border: none; padding: 0; margin: 0; }
@@ -148,7 +146,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -165,7 +163,7 @@
     border: none;
     border-bottom: 1px solid var(--color-brand-gray);
     padding: 1rem 0;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     color: var(--color-brand-black);
     font-size: 0.9375rem;
   }
@@ -180,7 +178,7 @@
   /* ── Eyebrow label ────────────────────────────────── */
   .eyebrow {
     display: block;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.65rem;
     font-weight: 700;
     letter-spacing: 0.3em;
@@ -200,7 +198,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -225,7 +223,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -250,7 +248,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -275,7 +273,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -301,7 +299,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -323,7 +321,7 @@
   }
 
   .cta-link { @apply text-[0.65rem] font-bold uppercase tracking-[0.22em] text-brand-pink transition-colors hover:text-brand-black; }
-  .surface-card { @apply border border-border bg-white; }
+  .surface-card { @apply border border-border bg-[#f0ece6]; }
   .meta-label { @apply text-[0.65rem] uppercase tracking-[0.3em] text-brand-gray; }
   .icon-button {
     display: inline-flex;
@@ -344,7 +342,7 @@
     align-items: center;
     justify-content: center;
     padding: 1rem 2.75rem;
-    font-family: var(--font-manrope), "Manrope", sans-serif;
+    font-family: var(--font-body);
     font-size: 0.6875rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -367,8 +365,7 @@
 }
 
 @layer utilities {
-  .font-display { font-family: var(--font-italiana), "Italiana", serif; }
-  .font-italiana { font-family: var(--font-italiana), "Italiana", serif; }
+  .font-heading { font-family: var(--font-heading); }
   .text-brand-black { color: var(--color-brand-black); }
   .text-brand-gray { color: var(--color-brand-gray); }
   .text-brand-pink { color: var(--color-brand-pink); }
@@ -394,6 +391,8 @@
   }
   .no-scrollbar::-webkit-scrollbar { display: none; }
   .container-luxe { @apply w-full px-6 md:px-10 lg:px-16; }
+  .progress-indicator-dynamic { transform: translateX(var(--progress-translate, -100%)); }
+  .chart-legend-swatch { background-color: var(--chart-legend-color, currentColor); }
   .fade-up { opacity: 0; transform: translateY(24px); transition: opacity 1s cubic-bezier(.2,.7,.2,1), transform 1s cubic-bezier(.2,.7,.2,1); }
   .fade-up.is-in { opacity: 1; transform: translateY(0); }
   .link-underline {

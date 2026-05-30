@@ -6,7 +6,7 @@ import { useAuth } from "@/hooks/use-auth";
 
 export const Route = createFileRoute("/login")({
   component: Login,
-  head: () => ({ meta: [{ title: "Studio Login — ATVAGA Designs" }, { name: "robots", content: "noindex" }] }),
+  head: () => ({ meta: [{ title: "Studio Login — ATVAGA Design" }, { name: "robots", content: "noindex" }] }),
 });
 
 function Login() {
@@ -45,7 +45,7 @@ function Login() {
     <section className="min-h-screen flex items-center justify-center bg-secondary px-6">
       <div className="w-full max-w-sm bg-background border border-border p-10">
         <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Studio Access</p>
-        <h1 className="mt-4 font-display text-3xl">{mode === "signin" ? "Sign in" : "Create account"}</h1>
+        <h1 className="mt-4 font-heading text-3xl">{mode === "signin" ? "Sign in" : "Create account"}</h1>
 
         <form onSubmit={submit} className="mt-8 space-y-5">
           <div>

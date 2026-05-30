@@ -6,8 +6,8 @@ export const Route = createFileRoute("/privacy")({
   component: Privacy,
   head: () => ({
     meta: [
-      { title: "Privacy Policy | ATVAGA Designs" },
-      { name: "description", content: "How ATVAGA Designs collects, uses and protects personal information submitted through our website." },
+      { title: "Privacy Policy | ATVAGA Design" },
+      { name: "description", content: "How ATVAGA Design collects, uses and protects personal information submitted through our website." },
       { name: "robots", content: "noindex" },
     ],
     links: [
@@ -17,7 +17,7 @@ export const Route = createFileRoute("/privacy")({
 });
 
 const EFFECTIVE_DATE = "May 24, 2026";
-const COMPANY = "ATVAGA Designs";
+const COMPANY = "ATVAGA Design";
 const EMAIL = SITE_EMAIL;
 
 const sections = [
@@ -73,7 +73,7 @@ function Privacy() {
       <section className="container-luxe pt-24 pb-16">
         <FadeIn>
           <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Legal</p>
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-3xl">
+          <h1 className="mt-6 font-heading text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-3xl">
             Privacy Policy
           </h1>
           <p className="mt-6 text-sm text-muted-foreground">Effective date: {EFFECTIVE_DATE}</p>
@@ -85,7 +85,7 @@ function Privacy() {
           {sections.map((s, i) => (
             <FadeIn key={s.title} delay={i * 40}>
               <div className="border-t border-border pt-8">
-                <h2 className="font-display text-2xl">{s.title}</h2>
+                <h2 className="font-heading text-2xl">{s.title}</h2>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
               </div>
             </FadeIn>

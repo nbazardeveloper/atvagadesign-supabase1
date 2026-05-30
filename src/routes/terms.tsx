@@ -6,8 +6,8 @@ export const Route = createFileRoute("/terms")({
   component: Terms,
   head: () => ({
     meta: [
-      { title: "Terms of Use | ATVAGA Designs" },
-      { name: "description", content: "Terms and conditions governing use of the ATVAGA Designs website and engagement of residential design services." },
+      { title: "Terms of Use | ATVAGA Design" },
+      { name: "description", content: "Terms and conditions governing use of the ATVAGA Design website and engagement of residential design services." },
       { name: "robots", content: "noindex" },
     ],
     links: [
@@ -17,14 +17,14 @@ export const Route = createFileRoute("/terms")({
 });
 
 const EFFECTIVE_DATE = "May 24, 2026";
-const COMPANY = "ATVAGA Designs";
+const COMPANY = "ATVAGA Design";
 const STATE = "Washington";
 const EMAIL = SITE_EMAIL;
 
 const sections = [
   {
     title: "Acceptance of Terms",
-    body: `By accessing or using the ATVAGA Designs website (atvaga.com) you agree to be bound by these Terms of Use. If you do not agree, please discontinue use of the site immediately. ${COMPANY} reserves the right to update these Terms at any time; continued use of the site following any change constitutes acceptance of the revised Terms.`,
+    body: `By accessing or using the ATVAGA Design website (atvaga.com) you agree to be bound by these Terms of Use. If you do not agree, please discontinue use of the site immediately. ${COMPANY} reserves the right to update these Terms at any time; continued use of the site following any change constitutes acceptance of the revised Terms.`,
   },
   {
     title: "Use of the Website",
@@ -32,7 +32,7 @@ const sections = [
   },
   {
     title: "Intellectual Property",
-    body: `All content on this website — including photographs, text, graphics, the ATVAGA Designs name and logo — is the exclusive property of ${COMPANY} or its licensors and is protected by United States and international copyright law. You may not reproduce, distribute, modify or create derivative works from any content without prior written permission from ${COMPANY}.`,
+    body: `All content on this website — including photographs, text, graphics, the ATVAGA Design name and logo — is the exclusive property of ${COMPANY} or its licensors and is protected by United States and international copyright law. You may not reproduce, distribute, modify or create derivative works from any content without prior written permission from ${COMPANY}.`,
   },
   {
     title: "Project Estimates & Quotes",
@@ -66,7 +66,7 @@ function Terms() {
       <section className="container-luxe pt-24 pb-16">
         <FadeIn>
           <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Legal</p>
-          <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-3xl">
+          <h1 className="mt-6 font-heading text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-3xl">
             Terms of Use
           </h1>
           <p className="mt-6 text-sm text-muted-foreground">Effective date: {EFFECTIVE_DATE}</p>
@@ -78,7 +78,7 @@ function Terms() {
           {sections.map((s, i) => (
             <FadeIn key={s.title} delay={i * 40}>
               <div className="border-t border-border pt-8">
-                <h2 className="font-display text-2xl">{s.title}</h2>
+                <h2 className="font-heading text-2xl">{s.title}</h2>
                 <p className="mt-4 text-sm text-muted-foreground leading-relaxed">{s.body}</p>
               </div>
             </FadeIn>

@@ -6,11 +6,11 @@ export const Route = createFileRoute("/services")({
   component: Services,
   head: () =>
     buildSeoMeta({
-      title: "Services | ADU Design, Permit Plans & Home Additions — ATVAGA Designs",
+      title: "Services | ADU Design, Permit Plans & Home Additions — ATVAGA Design",
       description:
         "Full range of residential design services: ADU design, permit plans, home additions, 3D renderings, city permit submittals and engineering coordination.",
       path: "/services",
-      imageAlt: "ATVAGA Designs residential design and permit services",
+      imageAlt: "ATVAGA Design residential design and permit services",
     }),
 });
 
@@ -86,7 +86,7 @@ function Services() {
       <PageHero
         eyebrow="Catalog of Services"
         title="Residential Design Services"
-        description="From first concept sketch to final city approval — ATVAGA Designs handles every stage of the residential design and permitting process across Washington State."
+        description="From first concept sketch to final city approval — ATVAGA Design handles every stage of the residential design and permitting process across Washington State."
         sectionClassName="pt-28 pb-16"
         titleClassName="max-w-4xl"
         descriptionClassName="max-w-2xl"
@@ -96,9 +96,9 @@ function Services() {
       <section className="section-wrap pb-24">
         <div className="grid gap-px border border-border bg-border">
           {SERVICES.map((s, i) => (
-            <div key={s.n} className="bg-white grid lg:grid-cols-12 gap-8 p-8 md:p-12">
+            <div key={s.n} className="bg-[#f0ece6] grid lg:grid-cols-12 gap-8 p-8 md:p-12">
               <div className="lg:col-span-1">
-                <p className="font-italiana text-3xl text-brand-black-20">{s.n}</p>
+                <p className="font-heading text-3xl text-brand-black-20">{s.n}</p>
               </div>
               <div className="lg:col-span-3 hidden lg:block">
                 <div className="aspect-[4/3] overflow-hidden">
@@ -111,8 +111,8 @@ function Services() {
                 </div>
               </div>
               <div className="lg:col-span-4">
-                <h2 className="font-italiana text-[2rem] text-brand-black">{s.t}</h2>
-                <p className="mt-4 max-w-md leading-relaxed text-brand-gray">{s.d}</p>
+                <h2 className="font-heading text-[2rem] text-brand-black">{s.t}</h2>
+                <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-brand-gray">{s.d}</p>
               </div>
               <div className="lg:col-span-3">
                 <ul className="space-y-3 mt-3">
@@ -141,7 +141,7 @@ function Services() {
         <div className="section-wrap text-center">
           <span className="eyebrow">Get Started</span>
           <h2 className="section-title">Every project is quoted individually.</h2>
-          <p className="mt-6 max-w-2xl text-brand-gray">
+          <p className="mt-6 max-w-2xl mx-auto text-brand-gray">
             Project scope, square footage, site conditions, and timeline all shape the proposal. Tell us about
             your project and we'll prepare a tailored estimate within 24 hours.
           </p>

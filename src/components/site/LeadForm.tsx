@@ -67,7 +67,7 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
   if (done) {
     return (
       <div className="border border-[#e5e5e5] p-10 text-center">
-        <p className="font-italiana text-2xl text-[#0a0a0a]">Thank you.</p>
+        <p className="font-heading text-2xl text-[#0a0a0a]">Thank you.</p>
         <p className="mt-3 text-sm text-[#6b6b6b]">
           Our team will be in touch within 24 hours.
         </p>
@@ -113,7 +113,7 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
             )}
           </span>
           <span className="text-[0.75rem] leading-relaxed text-[#0a0a0a]">
-            I consent to the collection, storage, and processing of my personal data by ATVAGA Designs
+            I consent to the collection, storage, and processing of my personal data by ATVAGA Design
             for the purpose of responding to my inquiry and providing requested services.
           </span>
         </label>
@@ -136,8 +136,8 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
       {/* Submit */}
       <div className="md:col-span-2">
         <button
-          disabled={submitting}
-          className="btn-base w-full border border-[#0a0a0a] bg-[#0a0a0a] px-10 text-white hover:bg-[#d4547a] hover:border-[#d4547a] transition-colors disabled:opacity-60 md:w-auto"
+          disabled={submitting || !consent}
+          className="btn-base w-full border border-[#0a0a0a] bg-[#0a0a0a] px-10 text-white hover:bg-[#d4547a] hover:border-[#d4547a] transition-colors disabled:opacity-40 disabled:cursor-not-allowed md:w-auto"
         >
           {submitting ? "Sending…" : "Submit"}
         </button>

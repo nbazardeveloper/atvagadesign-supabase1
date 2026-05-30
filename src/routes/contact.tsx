@@ -9,11 +9,11 @@ export const Route = createFileRoute("/contact")({
   component: Contact,
   head: () =>
     buildSeoMeta({
-      title: "Contact ATVAGA Designs — Residential Design & Permit Plans",
+      title: "Contact ATVAGA Design — Residential Design & Permit Plans",
       description:
-        "Get in touch with ATVAGA Designs for residential design drawings, permit plans, ADU/DADU design, and remodel services in Seattle and Washington State.",
+        "Get in touch with ATVAGA Design for residential design drawings, permit plans, ADU/DADU design, and remodel services in Seattle and Washington State.",
       path: "/contact",
-      imageAlt: "Contact ATVAGA Designs residential design studio",
+      imageAlt: "Contact ATVAGA Design residential design studio",
     }),
 });
 
@@ -95,7 +95,7 @@ function Contact() {
             {/* Service area callout */}
             <div className="border-t border-border pt-8">
               <p className="meta-label mb-4">Service Area</p>
-              <p className="font-italiana text-[1.5rem] text-brand-black">Washington State</p>
+              <p className="font-heading text-[1.5rem] text-brand-black">Washington State</p>
               <p className="mt-3 text-sm leading-relaxed text-brand-gray">
                 We serve residential clients throughout Seattle, Bellevue, Kirkland, Redmond, Bothell,
                 Edmonds, Mukilteo, Sammamish, and the greater Washington State area.
@@ -106,7 +106,7 @@ function Contact() {
           {/* Lead form */}
           <div className="lg:col-span-7">
             <div className="surface-card p-8 md:p-12">
-              <h2 className="mb-2 font-italiana text-[2rem] text-brand-black">Send a Message</h2>
+              <h2 className="mb-2 font-heading text-[2rem] text-brand-black">Send a Message</h2>
               <p className="mb-8 text-sm text-brand-gray">We respond within 24 hours.</p>
               <LeadForm source="contact_page" />
             </div>
