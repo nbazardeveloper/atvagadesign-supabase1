@@ -115,7 +115,7 @@ function Faq() {
         <div className="section-wrap text-center">
           <span className="eyebrow">Still have questions?</span>
           <h2 className="section-title">Let's talk about your project.</h2>
-          <p className="mt-6 max-w-xl mx-auto text-brand-gray">
+          <p className="mt-6 text-brand-gray">
             Every project is unique. Schedule a free 30-minute consultation and we'll answer all your
             questions about design, permitting, and timelines specific to your site.
           </p>

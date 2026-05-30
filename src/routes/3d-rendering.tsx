@@ -145,7 +145,7 @@ function ThreeDRendering() {
       <section className="w-full bg-brand-black py-24">
         <div className="section-wrap text-center">
           <h2 className="text-white">See Your Project Before It's Built</h2>
-          <p className="mt-6 max-w-xl mx-auto text-white/60">
+          <p className="mt-6 text-white/60">
             3D rendering is available as a standalone service or as an add-on to any design package.
             Contact us to discuss your visualization needs.
           </p>
