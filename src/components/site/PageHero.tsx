@@ -73,7 +73,7 @@ export function PageHero({
 
           <h1
             className={cn(
-              "mt-6 font-heading text-[clamp(2.5rem,7vw,6rem)] leading-[0.95]",
+              "mt-4 font-heading text-[clamp(2rem,4vw,3.5rem)] leading-[1]",
               isDark ? "text-white" : "text-brand-black",
               titleClassName,
             )}

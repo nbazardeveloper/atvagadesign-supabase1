@@ -50,21 +50,24 @@ function Portfolio() {
 
   return (
     <>
-      <section className="container-luxe pt-24 pb-12">
+      <section className="container-luxe pt-20 pb-4">
         <FadeIn>
-          <span className="eyebrow">Portfolio Archive</span>
-          <h1 className="mt-6 font-heading text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] text-brand-black">Selected Projects.</h1>
+          <span className="eyebrow">Our Work</span>
+          <h1 className="mt-4 font-heading text-[clamp(2rem,4vw,3.5rem)] leading-[1] text-brand-black">Selected Projects.</h1>
+          <p className="mt-3 max-w-2xl text-[0.9375rem] leading-relaxed text-brand-gray">We work across a range of project scales and types of buildings for new buildings, additions, renovations, and adaptive reuse.</p>
         </FadeIn>
       </section>
 
-      <section className="container-luxe py-8">
-        <div className="flex flex-wrap gap-2 border-b border-border pb-6">
+      <section className="container-luxe pt-4 pb-6">
+        <div className="flex flex-wrap items-center gap-2 border-b border-border pb-5">
           {categories.map(c => (
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-4 py-2 text-[10px] uppercase tracking-[0.25em] border transition ${
-                filter === c ? "bg-foreground text-background border-foreground" : "border-border hover:border-foreground"
+              className={`px-5 py-1.5 text-[9px] uppercase tracking-[0.28em] transition-colors ${
+                filter === c
+                  ? "bg-brand-black text-white"
+                  : "bg-transparent text-brand-gray border border-border hover:border-brand-black hover:text-brand-black"
               }`}
             >
               {c}
@@ -78,7 +81,7 @@ function Portfolio() {
           {visible.map((it, i) => (
             <FadeIn key={it.id} delay={i * 30}>
               <article className="group">
-                <div className="relative aspect-[4/5] overflow-hidden bg-secondary">
+                <div className="relative aspect-square overflow-hidden bg-secondary">
                   {getPortfolioImageSrc(it) ? (
                     <img
                       src={getPortfolioImageSrc(it) ?? undefined}

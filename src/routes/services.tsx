@@ -33,7 +33,7 @@ const SERVICES = [
     n: "03",
     t: "ADU / DADU Design",
     d: "Detached and attached accessory dwelling unit design from concept to permit-ready drawings — maximizing your property value.",
-    img: "/images/services/daduesign-card.jpg",
+    img: "/images/services/daduesign-card.webp",
     items: ["Detached ADU (DADU)", "Attached ADU", "Garage conversions", "Basement ADU conversions"],
   },
   {
@@ -85,8 +85,8 @@ function Services() {
     <>
       <PageHero
         eyebrow="Catalog of Services"
-        title="Residential Design Services"
-        description="From first concept sketch to final city approval — ATVAGA Design handles every stage of the residential design and permitting process across Washington State."
+        title="Our Services"
+        description="We provide much more than just design. Our studio leads clients through the complete process of a build, seamlessly managing every phase from initial spatial planning through to final construction. We bridge the gap between creative vision and technical execution."
         sectionClassName="pt-28 pb-16"
         titleClassName="max-w-4xl"
         descriptionClassName="max-w-2xl"

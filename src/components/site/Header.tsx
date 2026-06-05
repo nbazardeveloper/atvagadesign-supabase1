@@ -11,11 +11,11 @@ import {
 } from "@/lib/contact-info";
 
 const NAV_LINKS = [
-  { to: "/about", label: "About Us" },
-  { to: "/portfolio", label: "Portfolio" },
+  { to: "/", label: "Home" },
   { to: "/services", label: "Services" },
-  { to: "/3d-rendering", label: "3D Rendering" },
+  { to: "/portfolio", label: "Portfolio" },
   { to: "/faq", label: "FAQ" },
+  { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },
 ] as const;
 
@@ -58,53 +58,60 @@ export function Header() {
       className={[
         "fixed top-0 left-0 right-0 z-50 w-full",
         isTransparent
-          ? "bg-transparent md:overflow-visible"
-          : "bg-[#f0ece6] shadow-[0_1px_0_0_rgba(10,10,10,0.08)] md:bg-transparent md:shadow-none md:overflow-visible",
+          ? "bg-transparent lg:overflow-visible"
+          : "bg-[#f0ece6] shadow-[0_1px_0_0_rgba(10,10,10,0.08)] lg:bg-transparent lg:shadow-none lg:overflow-visible",
       ].join(" ")}
     >
-      {/* Desktop logo — absolute, shrinks on scroll */}
+      {/* Desktop logo — absolute */}
       <div className={[
-        "hidden md:block absolute left-0 top-0 z-[55] w-[300px] lg:w-[320px] transition-all duration-300",
-        isTransparent ? "h-[112px]" : "h-[64px] w-[220px] lg:w-[240px]",
+        "hidden lg:block absolute left-0 top-0 z-[55] transition-all duration-300",
+        isTransparent
+          ? "h-[112px] w-[300px] xl:w-[320px]"
+          : !isHome
+            ? "h-[96px] w-[300px] xl:w-[320px]"
+            : "h-[76px] w-[260px] xl:w-[280px]",
       ].join(" ")}>
         <Link
           to="/"
           aria-label="ATVAGA Design – home"
-          className="relative z-10 flex h-full items-center pl-8 lg:pl-10 xl:pl-12"
+          className="relative z-10 flex h-full items-center pl-8 xl:pl-10 2xl:pl-12"
         >
           <img
             src={isTransparent ? "/images/logo-white.webp" : "/images/logo-black.webp"}
             alt="ATVAGA Design"
-            className={["w-auto transition-all duration-300", isTransparent ? "h-[96px]" : "h-[44px]"].join(" ")}
+            className={[
+              "w-auto transition-all duration-300",
+              isTransparent ? "h-[96px]" : !isHome ? "h-[76px]" : "h-[56px]",
+            ].join(" ")}
           />
         </Link>
       </div>
 
-      {/* Single unified header bar — shrinks and gets background on scroll */}
+      {/* Single unified header bar */}
       <div className={[
         "w-full transition-all duration-300",
-        isTransparent ? "md:bg-transparent" : "md:bg-[#f0ece6] md:shadow-[0_1px_0_0_rgba(10,10,10,0.08)]",
+        isTransparent ? "lg:bg-transparent" : "lg:bg-[#f0ece6] lg:shadow-[0_1px_0_0_rgba(10,10,10,0.08)]",
       ].join(" ")}>
         <div className={[
           "section-wrap relative flex items-center justify-between transition-all duration-300",
-          isTransparent ? "h-[112px]" : "h-[64px]",
+          isTransparent ? "h-[112px]" : !isHome ? "h-[96px]" : "h-[76px]",
         ].join(" ")}>
 
-          {/* Mobile logo (in-flow, hidden on desktop) */}
+          {/* Mobile/tablet logo */}
           <Link
             to="/"
             aria-label="ATVAGA Design – home"
-            className="inline-flex items-center md:hidden"
+            className="inline-flex items-center lg:hidden"
           >
             <img
               src={isTransparent ? "/images/logo-white.webp" : "/images/logo-black.webp"}
               alt="ATVAGA Design"
-              className="h-9 w-auto"
+              className={["w-auto transition-all duration-300", !isHome ? "h-11" : "h-9"].join(" ")}
             />
           </Link>
 
           {/* Desktop nav links — centered horizontally */}
-          <div className="hidden md:flex absolute inset-x-0 h-full items-center justify-center pointer-events-none">
+          <div className="hidden lg:flex absolute inset-x-0 h-full items-center justify-center pointer-events-none">
             <nav className="flex items-center gap-8 pointer-events-auto" aria-label="Main navigation">
               {NAV_LINKS.map(({ to, label }) => (
                 <Link
@@ -126,13 +133,13 @@ export function Header() {
           {/* GET A QUOTE — desktop only, far right */}
           <Link
             to="/contact"
-            className="cta-brand-light-hover px-6 py-3 hidden md:inline-flex ml-auto"
+            className="cta-brand-light-hover px-6 py-3 hidden lg:inline-flex ml-auto"
           >
             Get a Quote
           </Link>
 
-          {/* Mobile: CTA + burger */}
-          <div className="flex items-center gap-3 md:hidden">
+          {/* Mobile/tablet: CTA + burger */}
+          <div className="flex items-center gap-3 lg:hidden">
             <a
               href={MOBILE_CALL_LINK.href}
               className="cta-brand-light-hover px-3 py-2 text-[0.55rem]"
@@ -161,7 +168,7 @@ export function Header() {
           "overflow-hidden transition-all duration-300",
           isTransparent
             ? "bg-brand-charcoal/80 backdrop-blur-md"
-            : "bg-[#f0ece6] md:hidden",
+            : "bg-[#f0ece6] lg:hidden",
           isMenuVisible || (!isTransparent && menuOpen) ? "max-h-screen py-6" : "max-h-0",
         ].join(" ")}
       >

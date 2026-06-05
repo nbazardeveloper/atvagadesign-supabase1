@@ -22,7 +22,7 @@ export const Route = createFileRoute("/")({
 const SHOWCASE_ITEMS = [
   { title: "Design Drawings", src: "/images/services/design-drawings.webp" },
   { title: "Permit Plans", src: "/images/services/permit-plans.webp" },
-  { title: "ADU/DADU Design", src: "/images/services/daduesign-card.jpg" },
+  { title: "ADU/DADU Design", src: "/images/services/daduesign-card.webp" },
   { title: "Additions & Remodels", src: "/images/services/additions-remodels.webp" },
   { title: "Interior Layout Planning", src: "/images/services/interior-layout-planning.webp" },
   { title: "Exterior & Facade", src: "/images/services/exterior-facade-Improvements.webp" },
@@ -233,84 +233,77 @@ function Home() {
 
       {/* ── SERVICES CAROUSEL ───────────────────────────── */}
       <section className="w-full bg-[#f0ece6] py-24 lg:py-32">
+        {/* Header */}
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="section-intro flex items-end justify-between gap-6">
             <div>
               <span className="eyebrow">What We Do</span>
-                <h2 className="section-title">Our Services</h2>
+              <h2 className="section-title">Our Services</h2>
+              <p className="mt-4 max-w-2xl text-[0.9375rem] leading-relaxed text-brand-gray">
+                Beyond Design. Complete Project Execution. — We provide much more than just conceptual design. Our studio guides clients through the entire lifecycle of a build—from initial feasibility planning and city permitting to final construction.
+              </p>
+              <div className="mt-4 flex flex-wrap gap-2">
+                {["Feasibility Studies & Programming", "Concept Design", "Schematic Design", "Design Development", "Permitting"].map((item) => (
+                  <span key={item} className="border border-border px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-brand-gray">
+                    {item}
+                  </span>
+                ))}
+              </div>
             </div>
-            <div className="hidden items-center gap-3 md:flex">
-              <button
-                type="button"
-                onClick={() => scrollServices("prev")}
-                aria-label="Scroll services left"
-                className="icon-button"
-              >
+            <div className="hidden shrink-0 items-center gap-3 md:flex">
+              <button type="button" onClick={() => scrollServices("prev")} aria-label="Scroll services left" className="icon-button">
                 <ChevronLeft className="h-4 w-4" />
               </button>
-              <button
-                type="button"
-                onClick={() => scrollServices("next")}
-                aria-label="Scroll services right"
-                className="icon-button"
-              >
+              <button type="button" onClick={() => scrollServices("next")} aria-label="Scroll services right" className="icon-button">
                 <ChevronRight className="h-4 w-4" />
               </button>
             </div>
           </div>
+        </div>
 
-          <div
-            ref={servicesScrollerRef}
-            className="no-scrollbar flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-smooth pb-2"
-          >
-            {SHOWCASE_ITEMS.map(({ title, src }) => (
-              <Link
-                key={title}
-                to="/services"
-                className="group relative block w-[14.5rem] shrink-0 snap-start overflow-hidden bg-[#f0ece6] sm:w-[15.5rem] lg:w-[16.75rem]"
-              >
-                <div className="bg-[#f0ece6] px-4 pt-4">
-                  <div className="relative aspect-[0.8/1] overflow-hidden rounded-t-[50%] bg-brand-light">
-                    <img
-                      src={src}
-                      alt={title}
-                      className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-brand-black-20 transition-colors group-hover:bg-brand-black-10" />
-                  </div>
-                </div>
-                <div className="flex min-h-[4.75rem] items-center bg-[#f0ece6] px-4 py-4">
-                  <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
-
-          <div className="mt-6 flex items-center justify-center gap-3 md:hidden">
-            <button
-              type="button"
-              onClick={() => scrollServices("prev")}
-              aria-label="Scroll services left"
-              className="icon-button"
+        {/* Cards — full bleed, stretch to fill window on desktop */}
+        <div
+          ref={servicesScrollerRef}
+          className="no-scrollbar mt-10 flex snap-x snap-mandatory overflow-x-auto scroll-smooth"
+        >
+          {SHOWCASE_ITEMS.map(({ title, src }) => (
+            <Link
+              key={title}
+              to="/services"
+              className="group relative flex flex-col min-w-[16rem] flex-1 shrink-0 snap-start bg-[#f0ece6]"
             >
-              <ChevronLeft className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              onClick={() => scrollServices("next")}
-              aria-label="Scroll services right"
-              className="icon-button"
-            >
-              <ChevronRight className="h-4 w-4" />
-            </button>
-          </div>
-
-          <div className="mt-10 text-center">
-            <Link to="/services" className="cta-dark px-10">
-              All Services
+              <div className="px-2 pt-2">
+                <div className="relative aspect-[0.8/1] overflow-hidden rounded-t-[50%] bg-brand-light">
+                  <img
+                    src={src}
+                    alt={title}
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-brand-black-20 transition-colors group-hover:bg-brand-black-10" />
+                </div>
+              </div>
+              <div className="flex min-h-[4.75rem] items-center px-4 py-4">
+                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</p>
+              </div>
             </Link>
-          </div>
+          ))}
+        </div>
+
+        {/* Mobile scroll arrows */}
+        <div className="mt-6 flex items-center justify-center gap-3 md:hidden">
+          <button type="button" onClick={() => scrollServices("prev")} aria-label="Scroll services left" className="icon-button">
+            <ChevronLeft className="h-4 w-4" />
+          </button>
+          <button type="button" onClick={() => scrollServices("next")} aria-label="Scroll services right" className="icon-button">
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </div>
+
+        <div className="mt-10 w-full px-5 text-center md:px-10 lg:px-20">
+          <Link to="/services" className="cta-dark px-10">
+            All Services
+          </Link>
         </div>
       </section>
 
@@ -387,33 +380,39 @@ function Home() {
               </div>
               {/* Rating badges */}
               <div className="flex flex-col gap-3 lg:max-w-[32rem]">
+                {/* Google */}
                 <div className="flex min-h-[5.9rem] items-center border border-[#ebe7e3] bg-[#f8f5f2] px-8 py-6">
-                  <div className="flex items-center gap-4 text-brand-pink">
-                    <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★★</span>
+                  <div className="flex items-center gap-5">
+                    <svg width="36" height="36" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Google">
+                      <path fill="#EA4335" d="M24 9.5c3.1 0 5.8 1.1 8 2.9l6-6C34.5 3.1 29.6 1 24 1 14.8 1 7 6.7 3.7 14.7l7 5.4C12.4 13.6 17.7 9.5 24 9.5z"/>
+                      <path fill="#4285F4" d="M46.5 24.5c0-1.6-.1-3.1-.4-4.5H24v8.5h12.7c-.6 3-2.3 5.5-4.8 7.2l7.4 5.7c4.3-4 6.8-9.9 6.8-16.9z"/>
+                      <path fill="#FBBC05" d="M10.7 28.1A14.6 14.6 0 0 1 9.5 24c0-1.4.2-2.8.6-4.1l-7-5.4A23.9 23.9 0 0 0 0 24c0 3.9.9 7.5 2.6 10.8l8.1-6.7z"/>
+                      <path fill="#34A853" d="M24 47c5.5 0 10.2-1.8 13.6-4.9l-7.4-5.7c-1.8 1.2-4.2 2-6.2 2-6.3 0-11.6-4.2-13.3-9.9l-8.1 6.7C7 42.3 14.8 47 24 47z"/>
+                    </svg>
                     <div className="flex flex-col">
-                      <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Google Reviews</span>
-                      <a
-                        href={GOOGLE_REVIEWS_URL}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
-                      >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Google Reviews</span>
+                        <span className="text-brand-pink leading-none">★★★★★</span>
+                      </div>
+                      <a href={GOOGLE_REVIEWS_URL} target="_blank" rel="noreferrer" className="mt-1.5 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black">
                         See Current Rating
                       </a>
                     </div>
                   </div>
                 </div>
+                {/* Thumbtack */}
                 <div className="flex min-h-[5.9rem] items-center border border-[#ebe7e3] bg-[#f8f5f2] px-8 py-6">
-                  <div className="flex items-center gap-4 text-brand-pink">
-                    <span className="text-[1.9rem] leading-none tracking-[0.08em]">★★★★</span>
+                  <div className="flex items-center gap-5">
+                    <svg width="36" height="36" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-label="Thumbtack">
+                      <circle cx="24" cy="24" r="24" fill="#009FD9"/>
+                      <path fill="#fff" d="M32.5 14H15.5a1.5 1.5 0 0 0-1.06 2.56L22 24.12V34a1 1 0 0 0 1.45.89l4-2A1 1 0 0 0 28 32v-7.88l7.56-7.56A1.5 1.5 0 0 0 32.5 14z"/>
+                    </svg>
                     <div className="flex flex-col">
-                      <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Thumbtack</span>
-                      <a
-                        href="https://www.thumbtack.com/wa/edmonds/architects/atvaga-design-llc-building-permit-drawings/service/421109884370501643?utm_medium=web&utm_source=txt&surface=sp&referrer_pk=421109884215058443"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="mt-1 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black"
-                      >
+                      <div className="flex items-center gap-2">
+                        <span className="text-[1.05rem] font-semibold leading-none text-brand-black">Thumbtack</span>
+                        <span className="text-brand-pink leading-none">★★★★</span>
+                      </div>
+                      <a href="https://www.thumbtack.com/wa/edmonds/architects/atvaga-design-llc-building-permit-drawings/service/421109884370501643?utm_medium=web&utm_source=txt&surface=sp&referrer_pk=421109884215058443" target="_blank" rel="noreferrer" className="mt-1.5 text-[0.72rem] uppercase tracking-[0.18em] text-brand-gray underline underline-offset-4 transition-colors hover:text-brand-black">
                         See Our Profile
                       </a>
                     </div>
@@ -437,15 +436,21 @@ function Home() {
         </div>
       </section>
 
-      {/* ── PROCESS ─────────────────────────────────────── */}
+      {/* ── PROJECT PHASES ──────────────────────────────── */}
       <section className="w-full bg-brand-light py-24 lg:py-32">
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="section-intro flex flex-col items-center text-center">
             <span className="eyebrow">How It Works</span>
-            <h2 className="section-title">From Vision to Permit</h2>
+            <h2 className="section-title">Project Phases</h2>
           </div>
-          <div className="grid grid-cols-1 gap-px bg-[#dedad7] sm:grid-cols-2 lg:grid-cols-4">
-            {PROCESS_STEPS.map(({ number, title, body }) => (
+          <div className="grid grid-cols-1 gap-px bg-[#dedad7] sm:grid-cols-2 lg:grid-cols-5">
+            {[
+              { number: "01", title: "Feasibility Studies & Programming", body: "We analyze site constraints, local zoning codes, and project requirements to establish a solid, realistic foundation for your build." },
+              { number: "02", title: "Concept Design", body: "We explore initial spatial layouts, massing, and design directions, translating your vision into a clear conceptual framework." },
+              { number: "03", title: "Schematic Design", body: "We refine the approved concept into detailed schematic drawings, defining precise scales, exterior forms, and interior relationships." },
+              { number: "04", title: "Design Development", body: "We finalize structural specifications, material selections, and technical details, preparing the project for structural accuracy." },
+              { number: "05", title: "Permitting", body: "We compile and manage the complete documentation package, guiding it through local jurisdictions to secure all necessary city approvals." },
+            ].map(({ number, title, body }) => (
               <div key={number} className="flex flex-col bg-brand-light px-8 py-10">
                 <span className="font-heading text-[4rem] leading-none text-brand-pink/25">{number}</span>
                 <h3 className="mt-6 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-brand-black">{title}</h3>
@@ -464,7 +469,7 @@ function Home() {
             <div className="relative mx-auto w-[78%] lg:w-full">
               <div className="relative aspect-[15/16] overflow-hidden">
                 <img
-                  src="/images/services/daduesign-card.jpg"
+                  src="/images/services/daduesign-card.webp"
                   alt="ADU interior project by ATVAGA Design"
                   className="h-full w-full object-cover object-center"
                   loading="lazy"

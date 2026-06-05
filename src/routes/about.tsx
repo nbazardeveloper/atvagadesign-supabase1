@@ -144,14 +144,14 @@ function About() {
             </div>
           </FadeIn>
 
-          <div className="mt-14 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2 xl:grid-cols-3">
+          <div className="mt-14 grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-3 xl:grid-cols-4">
             {(isLoading ? Array.from({ length: 3 }) : teamMembers).map((member, index) => {
               const isPlaceholder = !member;
 
               return (
                 <FadeIn key={member?.id ?? `placeholder-${index}`} delay={index * 40}>
                   <article className="flex h-full flex-col">
-                    <div className="aspect-square overflow-hidden bg-[#ece6dc]">
+                    <div className="aspect-[3/4] overflow-hidden bg-[#ece6dc]">
                       {member?.photo_url ? (
                         <img
                           src={member.photo_url}
