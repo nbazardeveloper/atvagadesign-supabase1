@@ -37,6 +37,7 @@ export const Route = createFileRoute("/about")({
       description:
         "Meet the ATVAGA Design team. Expert residential designers and drafting professionals serving homeowners, investors and contractors in Washington State.",
       path: "/about",
+      keywords: "ATVAGA Design team, residential designers Seattle, design studio Washington State, ADU design experts",
       imageAlt: "About ATVAGA Design residential design studio",
     }),
 });

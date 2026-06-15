@@ -118,7 +118,7 @@ export function Header() {
                   key={to}
                   to={to}
                   className={[
-                    "text-[0.7rem] font-semibold uppercase tracking-widest transition-colors",
+                    "text-[0.8rem] font-bold uppercase tracking-widest transition-colors",
                     isTransparent
                       ? "text-white/75 hover:text-white"
                       : "text-brand-black/70 hover:text-brand-black",
@@ -142,7 +142,7 @@ export function Header() {
           <div className="flex items-center gap-3 lg:hidden">
             <a
               href={MOBILE_CALL_LINK.href}
-              className="cta-brand-light-hover px-3 py-2 text-[0.55rem]"
+              className="cta-brand-light-hover px-3 py-2 text-[0.7rem]"
             >
               {MOBILE_CALL_LINK.label}
             </a>
@@ -182,7 +182,7 @@ export function Header() {
               to={to}
               onClick={() => setMenuOpen(false)}
               className={[
-                "border-b py-4 text-[0.7rem] font-semibold uppercase tracking-widest transition-colors",
+                "border-b py-4 text-[0.8rem] font-semibold uppercase tracking-widest transition-colors",
                 isTransparent
                   ? "border-white/15 text-white/80 hover:text-white"
                   : "border-brand-light text-brand-black hover-text-brand-pink",
@@ -196,7 +196,7 @@ export function Header() {
             to="/contact"
             onClick={() => setMenuOpen(false)}
             className={[
-              "btn-base mt-4 w-full border text-center text-[0.65rem] tracking-widest",
+              "btn-base mt-4 w-full border text-center text-[0.72rem] tracking-widest",
               isTransparent
                 ? "border-white bg-[#f0ece6] text-brand-black"
                 : "border-brand-black bg-brand-charcoal text-white",

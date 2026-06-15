@@ -56,7 +56,7 @@ export function Footer() {
   ] as const;
 
   return (
-    <footer className="w-full">
+    <footer className="w-full" aria-label="Site footer">
       {/* CTA section */}
       <section className="relative w-full overflow-hidden bg-brand-charcoal py-24 lg:py-28">
         <div className="section-wrap">
@@ -106,7 +106,7 @@ export function Footer() {
             {/* Link columns */}
             {Object.entries(FOOTER_LINKS).map(([group, links]) => (
               <div key={group}>
-                <h3 className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">
+                <h3 className="text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-brand-black">
                   {group}
                 </h3>
                 <ul className="mt-5 space-y-3">
@@ -126,7 +126,7 @@ export function Footer() {
 
             {/* Office column */}
             <div>
-              <h3 className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">
+              <h3 className="text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-brand-black">
                 Office
               </h3>
               <div className="mt-5 space-y-1 text-[0.9375rem] leading-[1.75] text-brand-gray">
@@ -153,7 +153,7 @@ export function Footer() {
 
         {/* Copyright bar */}
         <div className="section-wrap border-t border-brand-black/8 py-6">
-          <p className="text-[0.72rem] uppercase tracking-[0.16em] text-brand-gray">
+          <p className="text-[0.75rem] uppercase tracking-[0.12em] text-brand-gray">
             © {new Date().getFullYear()} ATVAGA Design. Design Drawings &amp; Permit Services in Washington State.
           </p>
         </div>

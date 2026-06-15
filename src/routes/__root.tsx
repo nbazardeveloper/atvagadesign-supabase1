@@ -27,10 +27,10 @@ function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-6">
       <div className="max-w-md text-center">
-        <p className="text-[10px] uppercase tracking-[0.3em] text-muted-foreground">Error 404</p>
+        <p className="text-[0.72rem] uppercase tracking-[0.25em] text-muted-foreground">Error 404</p>
         <h1 className="mt-4 font-heading text-6xl">Page not found</h1>
         <p className="mt-4 text-sm text-muted-foreground">The page you're looking for has been moved or doesn't exist.</p>
-        <Link to="/" className="mt-8 inline-flex items-center px-8 py-3 bg-foreground text-background text-[10px] uppercase tracking-[0.3em]">
+        <Link to="/" className="mt-8 inline-flex items-center px-8 py-3 bg-foreground text-background text-[0.72rem] uppercase tracking-[0.2em]">
           Return Home
         </Link>
       </div>
@@ -46,7 +46,7 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
       <div className="max-w-md text-center">
         <h1 className="font-heading text-3xl">Something went wrong</h1>
         <p className="mt-3 text-sm text-muted-foreground">Please try refreshing the page.</p>
-        <button onClick={() => { router.invalidate(); reset(); }} className="mt-6 inline-flex items-center px-6 py-3 bg-foreground text-background text-[10px] uppercase tracking-[0.3em]">
+        <button onClick={() => { router.invalidate(); reset(); }} className="mt-6 inline-flex items-center px-6 py-3 bg-foreground text-background text-[0.72rem] uppercase tracking-[0.2em]">
           Try again
         </button>
       </div>
@@ -64,8 +64,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     ],
     links: [
       ...rootSeo.links,
-      { rel: "icon", type: "image/webp", href: "/images/logo-black.webp" },
-      { rel: "shortcut icon", href: "/images/logo-black.webp" },
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      { rel: "icon", type: "image/png", sizes: "32x32", href: "/images/logo-black.webp" },
       { rel: "apple-touch-icon", href: "/images/logo-black.webp" },
       { rel: "stylesheet", href: appCss },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -85,13 +85,34 @@ const schemaOrgJsonLd = JSON.stringify({
   "name": seoDefaults.siteName,
   "description": "Residential design and ADU drafting services in Washington State",
   "url": seoDefaults.siteUrl,
-  "areaServed": ["Seattle", "Bellevue", "Kirkland", "Redmond", "Tacoma", "Renton", "Everett"],
+  "logo": `${seoDefaults.siteUrl}/images/logo-black.webp`,
+  "image": `${seoDefaults.siteUrl}/images/hero/hero.webp`,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Seattle",
+    "addressRegion": "WA",
+    "addressCountry": "US"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 47.6062,
+    "longitude": -122.3321
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+    "opens": "09:00",
+    "closes": "17:00"
+  },
+  "areaServed": [
+    "Seattle","Bellevue","Kirkland","Redmond",
+    "Bothell","Edmonds","Mukilteo","Sammamish",
+    "Tacoma","Renton","Everett"
+  ],
   "serviceType": [
-    "ADU Design",
-    "Permit Plans",
-    "Home Additions",
-    "Drafting Services",
-    "3D Renderings"
+    "ADU Design","DADU Design","Permit Plans","Home Additions",
+    "Residential Remodels","Drafting Services",
+    "3D Renderings","City Permit Submittals","Engineering Coordination"
   ]
 });
 
@@ -120,8 +141,13 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {chrome && (
+        <a href="#main-content" className="skip-nav">
+          Skip to main content
+        </a>
+      )}
       {chrome && <Header />}
-      <main className={chrome ? "" : "min-h-screen"}>
+      <main id="main-content" className={chrome ? "" : "min-h-screen"}>
         <Outlet />
       </main>
       {chrome && <Footer />}

@@ -38,7 +38,7 @@
   /* ── ATVAGA brand palette ────────────────────────── */
   --color-brand-black: #0a0a0a;
   --color-brand-charcoal: #3a3a3c;
-  --color-brand-gray: #6b6b6b;
+  --color-brand-gray: #595959;
   --color-brand-gray-light: #f2f2f2;
   --color-brand-white: #ffffff;
   --color-brand-pink: #d4547a;
@@ -136,6 +136,35 @@
     font-family: var(--font-body);
   }
   input:focus, textarea:focus, select:focus { outline: none; }
+
+  /* Skip navigation for keyboard/screen-reader users */
+  .skip-nav {
+    position: absolute;
+    left: -9999px;
+    top: 1rem;
+    z-index: 9999;
+    padding: 0.75rem 1.5rem;
+    background: var(--color-brand-black);
+    color: #fff;
+    font-size: 0.875rem;
+    font-weight: 700;
+    text-decoration: none;
+    letter-spacing: 0.05em;
+  }
+  .skip-nav:focus {
+    left: 1rem;
+  }
+
+  /* Focus-visible ring for keyboard navigation */
+  a:focus-visible,
+  button:focus-visible,
+  [role="button"]:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 2px solid var(--color-brand-pink);
+    outline-offset: 2px;
+  }
   fieldset { border: none; padding: 0; margin: 0; }
 }
 
@@ -179,9 +208,9 @@
   .eyebrow {
     display: block;
     font-family: var(--font-body);
-    font-size: 0.65rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.25em;
     text-transform: uppercase;
     color: var(--color-brand-pink);
   }
@@ -320,7 +349,7 @@
     color: var(--color-brand-black);
   }
 
-  .cta-link { @apply text-[0.65rem] font-bold uppercase tracking-[0.22em] text-brand-pink transition-colors hover:text-brand-black; }
+  .cta-link { @apply text-[0.72rem] font-bold uppercase tracking-[0.18em] text-brand-pink transition-colors hover:text-brand-black; }
   .surface-card { @apply border border-border bg-[#f0ece6]; }
   .meta-label { @apply text-[0.65rem] uppercase tracking-[0.3em] text-brand-gray; }
   .icon-button {

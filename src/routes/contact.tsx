@@ -13,6 +13,7 @@ export const Route = createFileRoute("/contact")({
       description:
         "Get in touch with ATVAGA Design for residential design drawings, permit plans, ADU/DADU design, and remodel services in Seattle and Washington State.",
       path: "/contact",
+      keywords: "contact ATVAGA Design, residential design consultation Seattle, ADU permit quote Washington",
       imageAlt: "Contact ATVAGA Design residential design studio",
     }),
 });
@@ -70,7 +71,7 @@ function Contact() {
                     <a href={href} className="flex items-center gap-4 flex-1">
                       <span className="text-brand-gray">{icon}</span>
                       <div>
-                        <p className="text-[0.65rem] uppercase tracking-[0.2em] text-brand-gray">{label}</p>
+                        <p className="text-[0.72rem] uppercase tracking-[0.15em] text-brand-gray">{label}</p>
                         <p className="mt-0.5 text-sm text-brand-black">{value}</p>
                       </div>
                     </a>
@@ -78,13 +79,13 @@ function Contact() {
                     <span className="flex items-center gap-4 flex-1">
                       <span className="text-brand-gray">{icon}</span>
                       <div>
-                        <p className="text-[0.65rem] uppercase tracking-[0.2em] text-brand-gray">{label}</p>
+                        <p className="text-[0.72rem] uppercase tracking-[0.15em] text-brand-gray">{label}</p>
                         <p className="mt-0.5 text-sm text-brand-black">{value}</p>
                       </div>
                     </span>
                   )}
                   {action && (
-                    <span className="meta-label text-[0.6rem] transition-colors group-hover:text-brand-black">
+                    <span className="meta-label text-[0.72rem] transition-colors group-hover:text-brand-black">
                       {action}
                     </span>
                   )}

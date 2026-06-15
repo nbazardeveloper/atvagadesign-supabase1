@@ -72,7 +72,7 @@ function Privacy() {
     <>
       <section className="container-luxe pt-24 pb-16">
         <FadeIn>
-          <p className="text-[10px] uppercase tracking-[0.35em] text-muted-foreground">Legal</p>
+          <p className="text-[0.72rem] uppercase tracking-[0.25em] text-muted-foreground">Legal</p>
           <h1 className="mt-6 font-heading text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-[-0.03em] max-w-3xl">
             Privacy Policy
           </h1>
@@ -93,7 +93,7 @@ function Privacy() {
         </div>
 
         <FadeIn delay={480}>
-          <div className="mt-20 pt-10 border-t border-border flex flex-col sm:flex-row gap-4 text-[10px] uppercase tracking-[0.3em]">
+          <div className="mt-20 pt-10 border-t border-border flex flex-col sm:flex-row gap-4 text-[0.72rem] uppercase tracking-[0.2em]">
             <Link to="/terms" className="link-underline text-muted-foreground hover:text-foreground">Terms of Use</Link>
             <Link to="/" className="link-underline text-muted-foreground hover:text-foreground">Return Home</Link>
           </div>

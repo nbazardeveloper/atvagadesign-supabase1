@@ -9,6 +9,7 @@ export const Route = createFileRoute("/services")({
       title: "Services | ADU Design, Permit Plans & Home Additions — ATVAGA Design",
       description:
         "Full range of residential design services: ADU design, permit plans, home additions, 3D renderings, city permit submittals and engineering coordination.",
+      keywords: "residential design services, ADU design Seattle, permit plans Washington, home additions, 3D renderings, engineering coordination, DADU design",
       path: "/services",
       imageAlt: "ATVAGA Design residential design and permit services",
     }),
@@ -101,7 +102,7 @@ function Services() {
                 <p className="font-heading text-3xl text-brand-black-20">{s.n}</p>
               </div>
               <div className="lg:col-span-3 hidden lg:block">
-                <div className="aspect-[4/3] overflow-hidden">
+                <div className="aspect-[3/4] overflow-hidden" style={{ borderRadius: "50% 50% 0 0 / 40% 40% 0 0" }}>
                   <img
                     src={s.img}
                     alt={s.t}
@@ -110,18 +111,9 @@ function Services() {
                   />
                 </div>
               </div>
-              <div className="lg:col-span-4">
+              <div className="lg:col-span-7">
                 <h2 className="font-heading text-[2rem] text-brand-black">{s.t}</h2>
                 <p className="mt-4 max-w-md text-[0.9375rem] leading-relaxed text-brand-gray">{s.d}</p>
-              </div>
-              <div className="lg:col-span-3">
-                <ul className="space-y-3 mt-3">
-                  {s.items.map((item) => (
-                    <li key={item} className="border-b border-border pb-3 text-sm text-brand-gray">
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
               <div className="lg:col-span-1 flex lg:justify-end items-start">
                 <Link

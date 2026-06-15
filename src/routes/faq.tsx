@@ -11,6 +11,7 @@ export const Route = createFileRoute("/faq")({
       description:
         "Common questions about residential permits, ADU/DADU design, city submittals, and the design process in Washington State. Answered by ATVAGA Design.",
       path: "/faq",
+      keywords: "ADU permit FAQ, residential design questions, permit timeline Washington, DADU permit requirements",
       imageAlt: "FAQ about residential design and permits by ATVAGA Design",
     }),
 });

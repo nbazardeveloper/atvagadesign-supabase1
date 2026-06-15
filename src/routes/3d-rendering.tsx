@@ -10,6 +10,7 @@ export const Route = createFileRoute("/3d-rendering")({
       description:
         "Photorealistic 3D renderings and virtual tours for residential projects in Seattle and Washington State. See your design before it's built.",
       path: "/3d-rendering",
+      keywords: "3D rendering services Seattle, residential visualization Washington, photorealistic renders, virtual tour design",
       imageAlt: "3D rendering of residential project by ATVAGA Design",
     }),
 });

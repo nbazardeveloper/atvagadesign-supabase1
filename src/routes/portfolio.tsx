@@ -16,6 +16,7 @@ export const Route = createFileRoute("/portfolio")({
       title: "Portfolio — Residential Design Projects | ATVAGA Design",
       description: "Explore completed ADU/DADU, home additions, remodels, and permit plan projects by ATVAGA Design across Seattle and Washington State.",
       path: "/portfolio",
+      keywords: "residential design portfolio, ADU projects Seattle, permit plan examples, home addition designs Washington",
       imageAlt: "Portfolio of residential design projects by ATVAGA Design",
     }),
 });
@@ -64,7 +65,7 @@ function Portfolio() {
             <button
               key={c}
               onClick={() => setFilter(c)}
-              className={`px-5 py-1.5 text-[9px] uppercase tracking-[0.28em] transition-colors ${
+              className={`px-5 py-1.5 text-[0.72rem] uppercase tracking-[0.2em] transition-colors ${
                 filter === c
                   ? "bg-brand-black text-white"
                   : "bg-transparent text-brand-gray border border-border hover:border-brand-black hover:text-brand-black"
@@ -93,7 +94,7 @@ function Portfolio() {
                     <div className="absolute inset-0 placeholder-tile transition-transform duration-700 ease-out group-hover:scale-105" />
                   )}
                   <div className="absolute left-5 bottom-5 backdrop-blur-md bg-white/30 border border-white/20 px-5 py-3 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.18)] transition-all duration-500 group-hover:-translate-y-1 group-hover:bg-white/40 group-hover:shadow-[0_14px_44px_-10px_rgba(0,0,0,0.4)]">
-                    <p className="text-[9px] uppercase tracking-[0.3em] text-zinc-900/60">{it.category}</p>
+                    <p className="text-[0.68rem] uppercase tracking-[0.2em] text-zinc-900/70">{it.category}</p>
                     <p className="mt-1 font-heading text-lg leading-tight text-zinc-900">{it.title}</p>
                   </div>
                 </div>

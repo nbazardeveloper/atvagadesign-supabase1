@@ -189,7 +189,7 @@ function Quote() {
           <Input label="Phone *" type="tel" value={form.phone} onChange={(v) => update("phone", v)} />
           <Input label="Property Street Address" value={form.propertyAddress} onChange={(v) => update("propertyAddress", v)} className="md:col-span-2" />
           <div className="md:col-span-2">
-            <label className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-brand-gray">
+            <label className="mb-2 block text-[0.75rem] uppercase tracking-[0.2em] text-brand-gray">
               Additional notes
             </label>
             <textarea
@@ -252,7 +252,7 @@ function Quote() {
       </section>
 
       <section className="section-wrap pb-32">
-        <p className="mb-6 text-[0.65rem] uppercase tracking-[0.3em] text-brand-gray">
+        <p className="mb-6 text-[0.75rem] uppercase tracking-[0.2em] text-brand-gray">
           {steps[step].label}
         </p>
         {steps[step].content}
@@ -276,7 +276,7 @@ function Input({
 }) {
   return (
     <div className={className}>
-      <label className="mb-2 block text-[0.65rem] uppercase tracking-[0.25em] text-brand-gray">{label}</label>
+      <label className="mb-2 block text-[0.75rem] uppercase tracking-[0.2em] text-brand-gray">{label}</label>
       <input
         value={value}
         onChange={(e) => onChange(e.target.value)}

@@ -244,7 +244,7 @@ function Home() {
               </p>
               <div className="mt-4 flex flex-wrap gap-2">
                 {["Feasibility Studies & Programming", "Concept Design", "Schematic Design", "Design Development", "Permitting"].map((item) => (
-                  <span key={item} className="border border-border px-3 py-1 text-[0.65rem] uppercase tracking-[0.2em] text-brand-gray">
+                  <span key={item} className="border border-border px-3 py-1 text-[0.72rem] uppercase tracking-[0.15em] text-brand-gray">
                     {item}
                   </span>
                 ))}
@@ -284,7 +284,7 @@ function Home() {
                 </div>
               </div>
               <div className="flex min-h-[4.75rem] items-center px-4 py-4">
-                <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</p>
+                <p className="text-[0.75rem] font-semibold uppercase tracking-[0.15em] text-brand-black">{title}</p>
               </div>
             </Link>
           ))}
@@ -427,7 +427,7 @@ function Home() {
                   key={title}
                   className="min-h-[10.6rem] border border-[#ebe7e3] bg-[#f0ece6] px-7 py-7 lg:px-8"
                 >
-                  <h3 className="text-[0.78rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{title}</h3>
+                  <h3 className="text-[0.8rem] font-semibold uppercase tracking-[0.15em] text-brand-black">{title}</h3>
                   <p className="mt-4 max-w-[22rem] text-[0.9375rem] leading-[1.65] text-brand-gray">{body}</p>
                 </article>
               ))}
@@ -477,7 +477,7 @@ function Home() {
               </div>
               <div className="absolute bottom-0 right-0 z-10 translate-x-[22%] translate-y-[28%] bg-brand-pink px-[4.875rem] py-9">
                 <p className="font-heading text-[4.5rem] leading-none text-white">150+</p>
-                <p className="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-white/90">Projects Completed</p>
+                <p className="mt-2 text-[0.72rem] font-bold uppercase tracking-[0.18em] text-white/90">Projects Completed</p>
               </div>
             </div>
             {/* Text */}
@@ -511,12 +511,12 @@ function Home() {
         <div className="w-full px-5 md:px-10 lg:px-20">
           <div className="mb-14 flex items-end justify-between">
             <div>
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.22em] text-brand-pink">Portfolio</span>
+              <span className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-brand-pink">Portfolio</span>
               <h2 className="mt-4 text-white">Featured Projects</h2>
             </div>
             <Link
               to="/portfolio"
-              className="hidden text-[0.65rem] font-bold uppercase tracking-[0.22em] text-white/40 hover:text-white transition-colors md:block"
+              className="hidden text-[0.75rem] font-bold uppercase tracking-[0.18em] text-white/40 hover:text-white transition-colors md:block"
             >
               View All Projects →
             </Link>
@@ -533,12 +533,12 @@ function Home() {
                   />
                   <div className="absolute inset-0 bg-brand-black-25 transition-colors group-hover:bg-brand-black-10" />
                   <div className="absolute left-4 top-4 border border-brand-pink-50 bg-brand-black-60 px-3 py-1">
-                    <span className="text-[0.58rem] font-semibold uppercase tracking-widest text-brand-pink">{type}</span>
+                    <span className="text-[0.72rem] font-semibold uppercase tracking-widest text-brand-pink">{type}</span>
                   </div>
                 </div>
                 <div className="mt-5">
                   <h3 className="font-heading text-[1.45rem] leading-snug text-white transition-colors group-hover:text-brand-pink">{title}</h3>
-                  <p className="mt-1 text-[0.72rem] uppercase tracking-widest text-brand-gray">{city}</p>
+                  <p className="mt-1 text-[0.75rem] uppercase tracking-widest text-brand-gray">{city}</p>
                 </div>
               </Link>
             ))}
@@ -575,7 +575,7 @@ function Home() {
                 <div className="px-5 py-5">
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="font-heading text-[1.5rem] text-brand-black">{name}</h3>
-                    <span className="mt-1 text-[0.6rem] font-semibold uppercase tracking-[0.15em] text-brand-pink">{badge}</span>
+                    <span className="mt-1 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-brand-pink">{badge}</span>
                   </div>
                   <p className="mt-3 text-sm leading-relaxed text-brand-gray">{description}</p>
                 </div>
@@ -601,12 +601,12 @@ function Home() {
                 <div className="mb-5 text-[0.9rem] leading-none tracking-[0.18em] text-brand-pink">★★★★★</div>
                 <p className="flex-1 text-[0.9375rem] leading-[1.65] text-brand-black-78">"{quote}"</p>
                 <footer className="mt-6 flex items-center gap-3 border-t border-brand-light pt-4">
-                  <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#f1e8eb] text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-brand-pink">
+                  <div className="flex h-8 w-8 shrink-0 items-center justify-center bg-[#f1e8eb] text-[0.72rem] font-semibold uppercase tracking-[0.05em] text-brand-pink">
                     {initials}
                   </div>
                   <div className="flex flex-col">
-                    <p className="text-[0.68rem] font-semibold uppercase tracking-[0.18em] text-brand-black">{author}</p>
-                    <p className="mt-1 text-[0.6rem] text-brand-gray">{location}</p>
+                    <p className="text-[0.72rem] font-semibold uppercase tracking-[0.15em] text-brand-black">{author}</p>
+                    <p className="mt-1 text-[0.72rem] text-brand-gray">{location}</p>
                   </div>
                 </footer>
               </blockquote>

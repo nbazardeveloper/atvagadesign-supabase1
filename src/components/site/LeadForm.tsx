@@ -40,20 +40,22 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
     }
 
     setSubmitting(true);
-    const { error } = await submitLead({
-      first_name: parsed.data.first_name,
-      last_name: parsed.data.last_name,
-      phone: parsed.data.phone,
-      email: parsed.data.email,
-      property_name: parsed.data.property_name || null,
-      property_address: parsed.data.property_address || null,
-      project_details: parsed.data.project_details || null,
-      marketing_consent: parsed.data.marketing_consent,
-      source,
+    const result = await submitLead({
+      data: {
+        first_name: parsed.data.first_name,
+        last_name: parsed.data.last_name,
+        phone: parsed.data.phone,
+        email: parsed.data.email,
+        property_name: parsed.data.property_name || null,
+        property_address: parsed.data.property_address || null,
+        project_details: parsed.data.project_details || null,
+        marketing_consent: parsed.data.marketing_consent,
+        source,
+      },
     });
     setSubmitting(false);
 
-    if (error) {
+    if (result.error) {
       toast.error("Could not send. Please try again.");
       return;
     }
@@ -68,7 +70,7 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
     return (
       <div className="border border-[#e5e5e5] p-10 text-center">
         <p className="font-heading text-2xl text-[#0a0a0a]">Thank you.</p>
-        <p className="mt-3 text-sm text-[#6b6b6b]">
+        <p className="mt-3 text-sm text-brand-gray">
           Our team will be in touch within 24 hours.
         </p>
       </div>
@@ -91,7 +93,7 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
 
       {/* Privacy notice */}
       <div className="md:col-span-2 border-t border-[#e5e5e5] pt-6">
-        <p className="text-[0.75rem] leading-relaxed text-[#6b6b6b]">
+        <p className="text-[0.8rem] leading-relaxed text-brand-gray">
           We process your personal information only to review your request, contact you about your
           project, and provide the services you ask us to provide. We handle your data in accordance
           with applicable privacy requirements and do not use it for unrelated purposes.
@@ -99,35 +101,36 @@ export function LeadForm({ source = "home_cta" }: { source?: string }) {
 
         {/* Personal data consent checkbox */}
         <label className="mt-5 flex cursor-pointer items-start gap-3">
-          <span className="relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center border border-[#6b6b6b]">
+          <span className="relative mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center border border-brand-gray">
             <input
               type="checkbox"
               checked={consent}
               onChange={(e) => setConsent(e.target.checked)}
               className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              aria-label="I consent to the processing of my personal data"
             />
             {consent && (
-              <svg viewBox="0 0 12 12" className="h-3 w-3 fill-[#d4547a]" aria-hidden>
+              <svg viewBox="0 0 12 12" className="h-3 w-3 fill-[#d4547a]" aria-hidden="true">
                 <path d="M1 6l3.5 3.5L11 2" stroke="#d4547a" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             )}
           </span>
-          <span className="text-[0.75rem] leading-relaxed text-[#0a0a0a]">
+          <span className="text-[0.8rem] leading-relaxed text-brand-black">
             I consent to the collection, storage, and processing of my personal data by ATVAGA Design
             for the purpose of responding to my inquiry and providing requested services.
           </span>
         </label>
 
-        <p className="mt-4 text-[0.7rem] leading-relaxed text-[#6b6b6b]">
+        <p className="mt-4 text-[0.75rem] leading-relaxed text-brand-gray">
           For more information about how we collect, use, and protect your personal data, please
           review our{" "}
-          <a href="/privacy" className="underline underline-offset-2 hover:text-[#0a0a0a] transition-colors">
+          <a href="/privacy" className="underline underline-offset-2 hover:text-brand-black transition-colors">
             Privacy Policy
           </a>
           .
         </p>
 
-        <p className="mt-4 text-[0.7rem] leading-relaxed text-[#6b6b6b]">
+        <p className="mt-4 text-[0.75rem] leading-relaxed text-brand-gray">
           By clicking submit, you confirm that you have read and understood this notice and agree to
           the processing of the information you provide for handling your request.
         </p>
@@ -160,16 +163,20 @@ function Field({
   required?: boolean;
   className?: string;
 }) {
+  const id = `field-${name}`;
   return (
     <div className={className}>
-      <label className="block text-[0.65rem] uppercase tracking-[0.25em] text-[#6b6b6b] mb-2">
+      <label htmlFor={id} className="block text-[0.75rem] uppercase tracking-[0.2em] text-brand-gray mb-2">
         {label}
-        {required && " *"}
+        {required && <span aria-hidden="true"> *</span>}
+        {required && <span className="sr-only"> (required)</span>}
       </label>
       <input
+        id={id}
         name={name}
         type={type}
         required={required}
+        aria-required={required}
         className="input-underline"
       />
     </div>
