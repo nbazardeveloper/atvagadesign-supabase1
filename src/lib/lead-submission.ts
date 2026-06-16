@@ -48,7 +48,7 @@ export const submitLead = createServerFn({ method: "POST" })
 
       await resend.emails.send({
         from: "onboarding@resend.dev",
-        to: "nazgul.developer@gmail.com", // TODO: после верификации домена вернуть на Info@atvaga.com
+        to: "rihanna@atvaga.com", // TODO: после верификации домена вернуть на Info@atvaga.com
         subject: `New lead: ${data.first_name} ${data.last_name}`,
         html: `
           <h2 style="font-family:sans-serif;color:#0a0a0a;">New lead from the website</h2>
