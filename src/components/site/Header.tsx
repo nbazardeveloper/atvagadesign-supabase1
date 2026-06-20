@@ -12,7 +12,6 @@ import {
 import { SERVICES } from "@/lib/services-data";
 
 const NAV_LINKS = [
-  { to: "/", label: "Home" },
   { to: "/portfolio", label: "Portfolio" },
   { to: "/faq", label: "FAQ" },
   { to: "/about", label: "About Us" },

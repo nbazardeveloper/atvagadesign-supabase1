@@ -57,7 +57,7 @@ function ServiceDetail() {
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
 
           {/* Image */}
-          <div className="lg:col-span-5">
+          <div className="lg:col-span-4">
             <div className="aspect-[3/4] overflow-hidden" style={{ borderRadius: "50% 50% 0 0 / 40% 40% 0 0" }}>
               <img
                 src={svc.img}
@@ -69,7 +69,7 @@ function ServiceDetail() {
           </div>
 
           {/* Details */}
-          <div className="lg:col-span-7 flex flex-col justify-center">
+          <div className="lg:col-span-8 flex flex-col justify-center">
             <h2 className="font-heading text-[2rem] text-brand-black">What's included</h2>
             <p className="mt-6 text-[0.9375rem] leading-[1.85] text-brand-gray">{svc.details}</p>
 

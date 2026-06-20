@@ -126,14 +126,6 @@ function Services() {
                     <h2 className="font-heading text-[2.2rem] text-brand-black mt-3 leading-tight">{s.t}</h2>
                     <p className="mt-4 text-[0.9375rem] leading-relaxed text-brand-gray max-w-sm">{s.d}</p>
 
-                    <ul className="mt-8 space-y-3">
-                      {s.items.map((item) => (
-                        <li key={item} className="flex items-center gap-3 text-[0.875rem] text-brand-black">
-                          <span className="h-px w-5 bg-brand-pink flex-shrink-0" />
-                          {item}
-                        </li>
-                      ))}
-                    </ul>
                   </div>
 
                   <div className="mt-10 flex flex-wrap items-center gap-4">
