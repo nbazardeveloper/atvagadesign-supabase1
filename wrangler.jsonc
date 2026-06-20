@@ -5,7 +5,8 @@
   "compatibility_flags": ["nodejs_compat"],
   "main": "src/server.ts",
   "assets": {
-    "binding": "ASSETS"
+    "binding": "ASSETS",
+    "directory": "dist/client"
   },
   // Non-secret runtime vars — visible to the Worker at runtime via process.env.*
   // These are injected into the HTML at request time (see src/server.ts)
