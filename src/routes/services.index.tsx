@@ -164,7 +164,7 @@ function Services() {
         <div className="w-full px-5 md:px-10 lg:px-20 text-center">
           <span className="eyebrow">Get Started</span>
           <h2 className="section-title">Every project is quoted individually.</h2>
-          <p className="mt-6 text-brand-gray max-w-xl mx-auto">
+          <p className="mt-6 text-brand-gray">
             Project scope, square footage, site conditions, and timeline all shape the proposal. Tell us about your project and we'll prepare a tailored estimate within 24 hours.
           </p>
           <Link
